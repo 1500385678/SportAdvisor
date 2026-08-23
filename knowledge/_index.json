@@ -1,0 +1,111 @@
+{
+  "version": "1.0",
+  "generated_at": "2026-08-24",
+  "source_root": "_SportLib/",
+  "total_topics": 10,
+  "ready_topics": 10,
+  "total_lines": 1886,
+  "total_bytes": 74848,
+  "topics": [
+    {
+      "topic_id": "01",
+      "name": "运动科学",
+      "path": "../01_运动科学",
+      "file": "运动解剖学与能量系统.md",
+      "lines": 188,
+      "bytes": 8284,
+      "summary": "训练学/生理学/能量系统底层",
+      "status": "ready"
+    },
+    {
+      "topic_id": "02",
+      "name": "力量训练",
+      "path": "../02_力量训练",
+      "file": "力量训练全指南.md",
+      "lines": 181,
+      "bytes": 7075,
+      "summary": "徒手/器械/复合动作/渐进超负荷",
+      "status": "ready"
+    },
+    {
+      "topic_id": "03",
+      "name": "有氧运动",
+      "path": "../03_有氧运动",
+      "file": "有氧运动完全指南.md",
+      "lines": 174,
+      "bytes": 6961,
+      "summary": "跑步/骑行/游泳/心率区间",
+      "status": "ready"
+    },
+    {
+      "topic_id": "04",
+      "name": "柔韧与拉伸",
+      "path": "../04_柔韧与拉伸",
+      "file": "柔韧性与拉伸完全指南.md",
+      "lines": 177,
+      "bytes": 7020,
+      "summary": "动态/静态/PNF/活动度",
+      "status": "ready"
+    },
+    {
+      "topic_id": "05",
+      "name": "运动营养",
+      "path": "../05_运动营养",
+      "file": "运动营养完全指南.md",
+      "lines": 207,
+      "bytes": 8936,
+      "summary": "宏量/补水/补剂/时序",
+      "status": "ready"
+    },
+    {
+      "topic_id": "06",
+      "name": "专项运动",
+      "path": "../06_专项运动",
+      "file": "常见球类与户外运动指南.md",
+      "lines": 169,
+      "bytes": 6588,
+      "summary": "球类/户外/格斗/技术动作",
+      "status": "ready"
+    },
+    {
+      "topic_id": "07",
+      "name": "运动损伤",
+      "path": "../07_运动损伤",
+      "file": "运动损伤预防与康复指南.md",
+      "lines": 201,
+      "bytes": 6990,
+      "summary": "预防/康复/常见伤病处理",
+      "status": "ready"
+    },
+    {
+      "topic_id": "08",
+      "name": "训练计划",
+      "path": "../08_训练计划",
+      "file": "周期化训练与减脂增肌方案.md",
+      "lines": 200,
+      "bytes": 7200,
+      "summary": "周期化/分化/减脂增肌方案",
+      "status": "ready"
+    },
+    {
+      "topic_id": "09",
+      "name": "运动心理",
+      "path": "../09_运动心理",
+      "file": "运动动机与心理调节.md",
+      "lines": 172,
+      "bytes": 7374,
+      "summary": "动机/疲劳/坚持/心态",
+      "status": "ready"
+    },
+    {
+      "topic_id": "10",
+      "name": "运动装备",
+      "path": "../10_运动装备",
+      "file": "运动装备选购与维护指南.md",
+      "lines": 217,
+      "bytes": 8420,
+      "summary": "选鞋/护具/穿戴/维护",
+      "status": "ready"
+    }
+  ]
+}
