@@ -1,0 +1,2283 @@
+{
+  "version": "0.1.0",
+  "schema_version": "0.1",
+  "generated_at": "2026-08-25",
+  "source_root": "_SportLib/",
+  "sources": [
+    "02_力量训练/力量训练全指南.md",
+    "04_柔韧与拉伸/柔韧性与拉伸完全指南.md",
+    "06_专项运动/常见球类与户外运动指南.md"
+  ],
+  "schema": {
+    "id": "exercises.json 内的唯一 id,格式 ex_<category>_<short>",
+    "name": "中文动作名",
+    "name_en": "英文动作名(可选,Phase 1 检索增强用)",
+    "category": "力量|有氧|柔韧|动态热身|核心|球类|户外",
+    "muscle_group": "胸|背|腿|肩|臂|核心|全身|臀|小腿|髋",
+    "primary_muscles": [
+      "主要目标肌群,可多个"
+    ],
+    "joint": "主要参与关节,如 髋+膝 / 肩+肘 / 脊柱",
+    "equipment": "徒手|哑铃|杠铃|弹力带|TRX|器械|自重|壶铃|药球|泡沫轴",
+    "level": "beginner|intermediate|advanced",
+    "type": "compound|isolation|static_stretch|dynamic_stretch|mobility|warmup|plyometric",
+    "pattern": "squat|hinge|push|pull|lunge|carry|rotation|stretch|mobility|warmup",
+    "reps": "推荐次数区间,如 8-12 或 30s×3",
+    "sets": "推荐组数,如 3-4",
+    "rest_sec": "组间休息秒数(中位值)",
+    "cues": [
+      "动作要点,3-5 条"
+    ],
+    "common_mistakes": [
+      "常见错误,1-3 条"
+    ],
+    "regressions": [
+      "降阶动作 id(更简单)"
+    ],
+    "progressions": [
+      "升阶动作 id(更难)"
+    ],
+    "injury_risk": "low|medium|high",
+    "contraindications": [
+      "禁忌人群/伤病,如 膝关节术后"
+    ],
+    "tags": [
+      "训练标签,如 复合动作 / 全身力量 / 增肌"
+    ],
+    "source_doc": "来源 md 文件相对路径",
+    "ref_section": "在源 md 中所属章节,如 二、复合动作 vs 孤立动作"
+  },
+  "stats": {
+    "total": 49,
+    "by_category": {
+      "力量": 33,
+      "柔韧": 9,
+      "动态热身": 5,
+      "核心": 2
+    },
+    "by_level": {
+      "intermediate": 14,
+      "advanced": 4,
+      "beginner": 31
+    },
+    "by_pattern": {
+      "squat": 6,
+      "hinge": 4,
+      "lunge": 2,
+      "push": 15,
+      "pull": 8,
+      "stretch": 9,
+      "warmup": 1,
+      "mobility": 4
+    },
+    "by_equipment": {
+      "杠铃": 9,
+      "哑铃": 7,
+      "徒手": 27,
+      "器械": 5,
+      "弹力带": 1
+    },
+    "by_muscle_group": {
+      "腿": 12,
+      "背": 9,
+      "胸": 9,
+      "肩": 5,
+      "臂": 2,
+      "小腿": 3,
+      "臀": 1,
+      "髋": 4,
+      "全身": 2,
+      "核心": 2
+    },
+    "progression_refs_unresolved": 32
+  },
+  "exercises": [
+    {
+      "id": "ex_squat_back_barbell",
+      "name": "杠铃背蹲",
+      "name_en": "Barbell Back Squat",
+      "category": "力量",
+      "muscle_group": "腿",
+      "primary_muscles": [
+        "股四头肌",
+        "臀大肌",
+        "核心"
+      ],
+      "joint": "髋+膝",
+      "equipment": "杠铃",
+      "level": "intermediate",
+      "type": "compound",
+      "pattern": "squat",
+      "reps": "5-8",
+      "sets": "3-5",
+      "rest_sec": 180,
+      "cues": [
+        "杠铃置于斜方肌上(高杠位)或三角肌后束(低杠位)",
+        "双脚与肩同宽,脚尖略外展 15-30°",
+        "下蹲时保持脊柱中立,膝盖方向与脚尖一致",
+        "蹲至大腿平行或略低于平行(全范围)",
+        "蹬地起身,髋膝同时伸展"
+      ],
+      "common_mistakes": [
+        "膝盖内扣",
+        "下背过度前屈(butt wink)",
+        "重心前移到脚尖"
+      ],
+      "regressions": [
+        "ex_squat_box",
+        "ex_squat_dumbbell"
+      ],
+      "progressions": [
+        "ex_squat_front_barbell",
+        "ex_squat_jump"
+      ],
+      "injury_risk": "medium",
+      "contraindications": [
+        "膝关节术后早期",
+        "腰椎间盘突出急性期"
+      ],
+      "tags": [
+        "复合动作",
+        "全身力量",
+        "增肌",
+        "深蹲家族"
+      ],
+      "source_doc": "02_力量训练/力量训练全指南.md",
+      "ref_section": "二、复合动作 vs 孤立动作"
+    },
+    {
+      "id": "ex_squat_front_barbell",
+      "name": "杠铃前蹲",
+      "name_en": "Barbell Front Squat",
+      "category": "力量",
+      "muscle_group": "腿",
+      "primary_muscles": [
+        "股四头肌",
+        "核心"
+      ],
+      "joint": "髋+膝",
+      "equipment": "杠铃",
+      "level": "advanced",
+      "type": "compound",
+      "pattern": "squat",
+      "reps": "5-8",
+      "sets": "3-5",
+      "rest_sec": 180,
+      "cues": [
+        "杠铃置于三角肌前束(交叉握或干净提铃)",
+        "肘部抬高,上身保持直立",
+        "股四主导,臀大肌参与相对减少",
+        "躯干尽量保持垂直,减少前倾"
+      ],
+      "common_mistakes": [
+        "肘部下沉导致杠铃前掉",
+        "上身前倾过度",
+        "塌腰"
+      ],
+      "regressions": [
+        "ex_squat_back_barbell"
+      ],
+      "progressions": [],
+      "injury_risk": "medium",
+      "contraindications": [
+        "腕关节活动受限",
+        "腰椎术后"
+      ],
+      "tags": [
+        "复合动作",
+        "股四主导",
+        "进阶深蹲"
+      ],
+      "source_doc": "02_力量训练/力量训练全指南.md",
+      "ref_section": "三、主要肌群训练动作库/下肢"
+    },
+    {
+      "id": "ex_squat_box",
+      "name": "箱式深蹲",
+      "name_en": "Box Squat",
+      "category": "力量",
+      "muscle_group": "腿",
+      "primary_muscles": [
+        "股四头肌",
+        "臀大肌"
+      ],
+      "joint": "髋+膝",
+      "equipment": "杠铃",
+      "level": "beginner",
+      "type": "compound",
+      "pattern": "squat",
+      "reps": "8-12",
+      "sets": "3-4",
+      "rest_sec": 120,
+      "cues": [
+        "身后放一箱子或凳子,高度约与膝盖同高",
+        "下蹲至臀部轻触箱子后立即起身",
+        "学习动作模式和底部深度",
+        "适合新手和大体重学习者"
+      ],
+      "common_mistakes": [
+        "砸到箱子(失去张力)",
+        "下蹲时膝盖过度前移超过脚尖"
+      ],
+      "regressions": [
+        "ex_squat_chair"
+      ],
+      "progressions": [
+        "ex_squat_back_barbell"
+      ],
+      "injury_risk": "low",
+      "contraindications": [],
+      "tags": [
+        "复合动作",
+        "深蹲入门",
+        "大体重友好"
+      ],
+      "source_doc": "02_力量训练/力量训练全指南.md",
+      "ref_section": "三、主要肌群训练动作库/下肢"
+    },
+    {
+      "id": "ex_squat_dumbbell",
+      "name": "哑铃深蹲(高脚杯蹲)",
+      "name_en": "Goblet Squat",
+      "category": "力量",
+      "muscle_group": "腿",
+      "primary_muscles": [
+        "股四头肌",
+        "臀大肌"
+      ],
+      "joint": "髋+膝",
+      "equipment": "哑铃",
+      "level": "beginner",
+      "type": "compound",
+      "pattern": "squat",
+      "reps": "10-15",
+      "sets": "3-4",
+      "rest_sec": 90,
+      "cues": [
+        "双手抱哑铃于胸前(高脚杯位)",
+        "哑铃的配重自然帮助上身保持直立",
+        "蹲至大腿略低于平行",
+        "适合初级到中级训练者"
+      ],
+      "common_mistakes": [
+        "肘部内夹",
+        "上身前倾过度"
+      ],
+      "regressions": [
+        "ex_squat_chair",
+        "ex_squat_box"
+      ],
+      "progressions": [
+        "ex_squat_back_barbell",
+        "ex_squat_front_barbell"
+      ],
+      "injury_risk": "low",
+      "contraindications": [],
+      "tags": [
+        "复合动作",
+        "深蹲入门",
+        "全身力量"
+      ],
+      "source_doc": "02_力量训练/力量训练全指南.md",
+      "ref_section": "三、主要肌群训练动作库/下肢"
+    },
+    {
+      "id": "ex_squat_chair",
+      "name": "椅子深蹲(借力)",
+      "name_en": "Chair-Assisted Squat",
+      "category": "力量",
+      "muscle_group": "腿",
+      "primary_muscles": [
+        "股四头肌",
+        "臀大肌"
+      ],
+      "joint": "髋+膝",
+      "equipment": "徒手",
+      "level": "beginner",
+      "type": "compound",
+      "pattern": "squat",
+      "reps": "10-15",
+      "sets": "3",
+      "rest_sec": 60,
+      "cues": [
+        "面向椅子站立,脚与肩同宽",
+        "下蹲时缓慢控制,臀部接近椅面时短暂停留",
+        "完全新手/老年康复入门动作"
+      ],
+      "common_mistakes": [
+        "膝盖过度前移",
+        "完全坐实椅子(失去离心张力)"
+      ],
+      "regressions": [],
+      "progressions": [
+        "ex_squat_box",
+        "ex_squat_dumbbell"
+      ],
+      "injury_risk": "low",
+      "contraindications": [],
+      "tags": [
+        "深蹲入门",
+        "康复友好",
+        "徒手"
+      ],
+      "source_doc": "02_力量训练/力量训练全指南.md",
+      "ref_section": "三、主要肌群训练动作库/下肢"
+    },
+    {
+      "id": "ex_squat_jump",
+      "name": "深蹲跳",
+      "name_en": "Squat Jump",
+      "category": "力量",
+      "muscle_group": "腿",
+      "primary_muscles": [
+        "股四头肌",
+        "臀大肌",
+        "小腿"
+      ],
+      "joint": "髋+膝+踝",
+      "equipment": "徒手",
+      "level": "intermediate",
+      "type": "plyometric",
+      "pattern": "squat",
+      "reps": "6-10",
+      "sets": "3-4",
+      "rest_sec": 120,
+      "cues": [
+        "由半蹲姿势发力向上跳起",
+        "落地时屈膝缓冲,回到半蹲位",
+        "篮球/羽毛球等爆发力训练常用"
+      ],
+      "common_mistakes": [
+        "落地僵硬无缓冲",
+        "膝盖内扣"
+      ],
+      "regressions": [
+        "ex_squat_back_barbell"
+      ],
+      "progressions": [
+        "ex_squat_jump_weighted"
+      ],
+      "injury_risk": "medium",
+      "contraindications": [
+        "膝关节损伤",
+        "踝关节不稳"
+      ],
+      "tags": [
+        "爆发力",
+        "Plyometric",
+        "篮球专项"
+      ],
+      "source_doc": "06_专项运动/常见球类与户外运动指南.md",
+      "ref_section": "一、篮球运动/篮球专项力量训练"
+    },
+    {
+      "id": "ex_deadlift_romanian",
+      "name": "罗马尼亚硬拉",
+      "name_en": "Romanian Deadlift",
+      "category": "力量",
+      "muscle_group": "背",
+      "primary_muscles": [
+        "腘绳肌",
+        "臀大肌",
+        "下背"
+      ],
+      "joint": "髋",
+      "equipment": "杠铃",
+      "level": "intermediate",
+      "type": "compound",
+      "pattern": "hinge",
+      "reps": "8-12",
+      "sets": "3-4",
+      "rest_sec": 150,
+      "cues": [
+        "膝关节微屈且角度固定,只动髋关节",
+        "杠铃沿大腿下放,贴近身体",
+        "感受腘绳肌拉伸至最大可控幅度后起身",
+        "膝屈角度变化小,主要靠髋铰链"
+      ],
+      "common_mistakes": [
+        "下背过度前屈(圆背)",
+        "膝关节弯曲过多(变成半程硬拉)",
+        "杠铃远离大腿"
+      ],
+      "regressions": [
+        "ex_deadlift_standard"
+      ],
+      "progressions": [
+        "ex_deadlift_sumo",
+        "ex_deadlift_stiff_leg"
+      ],
+      "injury_risk": "medium",
+      "contraindications": [
+        "下背伤病急性期",
+        "腘绳肌拉伤"
+      ],
+      "tags": [
+        "复合动作",
+        "后链",
+        "腘绳肌主导",
+        "硬拉家族"
+      ],
+      "source_doc": "02_力量训练/力量训练全指南.md",
+      "ref_section": "三、主要肌群训练动作库/下肢"
+    },
+    {
+      "id": "ex_deadlift_standard",
+      "name": "标准硬拉",
+      "name_en": "Conventional Deadlift",
+      "category": "力量",
+      "muscle_group": "背",
+      "primary_muscles": [
+        "臀大肌",
+        "腘绳肌",
+        "背阔肌",
+        "下背"
+      ],
+      "joint": "髋+膝+脊柱",
+      "equipment": "杠铃",
+      "level": "advanced",
+      "type": "compound",
+      "pattern": "hinge",
+      "reps": "3-6",
+      "sets": "3-5",
+      "rest_sec": 240,
+      "cues": [
+        "杠铃贴近小腿,脚与髋同宽",
+        "髋膝同时屈曲启动,背保持中立",
+        "蹬地起身,髋膝同时伸展",
+        "杠铃始终贴腿,过膝后顶髋锁定"
+      ],
+      "common_mistakes": [
+        "圆背起身",
+        "杠铃远离身体(远离小腿)",
+        "先伸膝再伸髋(半程硬拉)"
+      ],
+      "regressions": [
+        "ex_deadlift_romanian"
+      ],
+      "progressions": [],
+      "injury_risk": "high",
+      "contraindications": [
+        "腰椎间盘突出",
+        "下背伤病"
+      ],
+      "tags": [
+        "复合动作",
+        "全身力量",
+        "力量之王",
+        "硬拉家族"
+      ],
+      "source_doc": "02_力量训练/力量训练全指南.md",
+      "ref_section": "二、复合动作 vs 孤立动作"
+    },
+    {
+      "id": "ex_deadlift_sumo",
+      "name": "相扑硬拉",
+      "name_en": "Sumo Deadlift",
+      "category": "力量",
+      "muscle_group": "背",
+      "primary_muscles": [
+        "臀大肌",
+        "内收肌",
+        "下背"
+      ],
+      "joint": "髋+膝",
+      "equipment": "杠铃",
+      "level": "advanced",
+      "type": "compound",
+      "pattern": "hinge",
+      "reps": "3-6",
+      "sets": "3-5",
+      "rest_sec": 240,
+      "cues": [
+        "宽站距,脚尖外展 45-60°",
+        "手握杠铃于两脚之间",
+        "髋外展肌群参与多,膝屈角度大",
+        "起身时髋膝同时伸展"
+      ],
+      "common_mistakes": [
+        "下背塌陷",
+        "重心前移",
+        "膝盖内扣"
+      ],
+      "regressions": [
+        "ex_deadlift_standard"
+      ],
+      "progressions": [],
+      "injury_risk": "high",
+      "contraindications": [
+        "髋关节伤病",
+        "内收肌拉伤"
+      ],
+      "tags": [
+        "复合动作",
+        "硬拉家族",
+        "宽站距"
+      ],
+      "source_doc": "02_力量训练/力量训练全指南.md",
+      "ref_section": "三、主要肌群训练动作库/下肢"
+    },
+    {
+      "id": "ex_deadlift_stiff_leg",
+      "name": "直腿硬拉",
+      "name_en": "Stiff-Leg Deadlift",
+      "category": "力量",
+      "muscle_group": "背",
+      "primary_muscles": [
+        "腘绳肌",
+        "臀大肌"
+      ],
+      "joint": "髋",
+      "equipment": "杠铃",
+      "level": "intermediate",
+      "type": "compound",
+      "pattern": "hinge",
+      "reps": "8-12",
+      "sets": "3-4",
+      "rest_sec": 120,
+      "cues": [
+        "腿几乎伸直(膝微屈 5-10°)",
+        "杠铃沿腿下放,腘绳肌拉伸感明显",
+        "腘绳肌主导,腰部负荷较罗马尼亚硬拉更高"
+      ],
+      "common_mistakes": [
+        "膝屈过多(变成罗马尼亚硬拉)",
+        "圆背下放"
+      ],
+      "regressions": [
+        "ex_deadlift_romanian"
+      ],
+      "progressions": [],
+      "injury_risk": "medium",
+      "contraindications": [
+        "腘绳肌拉伤",
+        "下背伤病"
+      ],
+      "tags": [
+        "腘绳肌主导",
+        "硬拉家族",
+        "进阶"
+      ],
+      "source_doc": "02_力量训练/力量训练全指南.md",
+      "ref_section": "三、主要肌群训练动作库/下肢"
+    },
+    {
+      "id": "ex_lunge_bulgarian",
+      "name": "保加利亚分腿蹲",
+      "name_en": "Bulgarian Split Squat",
+      "category": "力量",
+      "muscle_group": "腿",
+      "primary_muscles": [
+        "股四头肌",
+        "臀大肌"
+      ],
+      "joint": "髋+膝",
+      "equipment": "哑铃",
+      "level": "intermediate",
+      "type": "compound",
+      "pattern": "lunge",
+      "reps": "8-10/侧",
+      "sets": "3-4",
+      "rest_sec": 90,
+      "cues": [
+        "后脚搭在凳子/箱子上,前脚承重",
+        "下蹲至前腿大腿平行",
+        "单侧力量+稳定性训练,纠正左右不平衡"
+      ],
+      "common_mistakes": [
+        "前膝过度前移超过脚尖",
+        "躯干过度前倾",
+        "后腿承重过多(失去单侧训练意义)"
+      ],
+      "regressions": [
+        "ex_lunge_walking"
+      ],
+      "progressions": [
+        "ex_lunge_bulgarian_weighted"
+      ],
+      "injury_risk": "medium",
+      "contraindications": [
+        "膝关节不稳",
+        "平衡障碍"
+      ],
+      "tags": [
+        "单侧训练",
+        "稳定",
+        "深蹲变体"
+      ],
+      "source_doc": "02_力量训练/力量训练全指南.md",
+      "ref_section": "三、主要肌群训练动作库/下肢"
+    },
+    {
+      "id": "ex_lunge_walking",
+      "name": "行走箭步蹲",
+      "name_en": "Walking Lunge",
+      "category": "力量",
+      "muscle_group": "腿",
+      "primary_muscles": [
+        "股四头肌",
+        "臀大肌"
+      ],
+      "joint": "髋+膝",
+      "equipment": "徒手",
+      "level": "beginner",
+      "type": "compound",
+      "pattern": "lunge",
+      "reps": "10-12步/侧",
+      "sets": "3",
+      "rest_sec": 60,
+      "cues": [
+        "迈步向前下蹲,后膝接近地面但不触地",
+        "起身时后脚前迈,交替向前行走",
+        "动态拉伸+力量训练双重效果"
+      ],
+      "common_mistakes": [
+        "前膝内扣",
+        "上身前倾过度"
+      ],
+      "regressions": [
+        "ex_lunge_static"
+      ],
+      "progressions": [
+        "ex_lunge_bulgarian",
+        "ex_lunge_walking_weighted"
+      ],
+      "injury_risk": "low",
+      "contraindications": [],
+      "tags": [
+        "动态拉伸",
+        "下肢力量",
+        "热身可用"
+      ],
+      "source_doc": "04_柔韧与拉伸/柔韧性与拉伸完全指南.md",
+      "ref_section": "四、运动前动态热身模板"
+    },
+    {
+      "id": "ex_bench_barbell",
+      "name": "杠铃卧推",
+      "name_en": "Barbell Bench Press",
+      "category": "力量",
+      "muscle_group": "胸",
+      "primary_muscles": [
+        "胸大肌",
+        "三头肌",
+        "三角肌前束"
+      ],
+      "joint": "肩+肘",
+      "equipment": "杠铃",
+      "level": "intermediate",
+      "type": "compound",
+      "pattern": "push",
+      "reps": "5-8",
+      "sets": "3-5",
+      "rest_sec": 180,
+      "cues": [
+        "仰卧凳上,双脚踩稳,臀部贴凳",
+        "握距比肩宽,下放至胸口",
+        "保持肩胛后缩下沉(贴凳)",
+        "推起至肘部伸直但不锁死"
+      ],
+      "common_mistakes": [
+        "臀部抬离凳子(借力)",
+        "肩胛前伸(失去稳定)",
+        "杠铃反弹下放"
+      ],
+      "regressions": [
+        "ex_pushup_standard"
+      ],
+      "progressions": [
+        "ex_bench_close_grip"
+      ],
+      "injury_risk": "medium",
+      "contraindications": [
+        "肩袖损伤",
+        "肘关节伤病"
+      ],
+      "tags": [
+        "复合动作",
+        "上肢推",
+        "卧推家族"
+      ],
+      "source_doc": "02_力量训练/力量训练全指南.md",
+      "ref_section": "二、复合动作 vs 孤立动作"
+    },
+    {
+      "id": "ex_bench_incline_dumbbell",
+      "name": "上斜哑铃推举",
+      "name_en": "Incline Dumbbell Press",
+      "category": "力量",
+      "muscle_group": "胸",
+      "primary_muscles": [
+        "胸大肌上部(锁骨部)",
+        "三角肌前束",
+        "三头肌"
+      ],
+      "joint": "肩+肘",
+      "equipment": "哑铃",
+      "level": "intermediate",
+      "type": "compound",
+      "pattern": "push",
+      "reps": "8-12",
+      "sets": "3-4",
+      "rest_sec": 90,
+      "cues": [
+        "凳子调至 30-45° 倾斜",
+        "哑铃下放至胸侧,推起至肘伸直",
+        "锁骨部(上部胸)主导发力"
+      ],
+      "common_mistakes": [
+        "角度过大变成肩推",
+        "肘部外展过度"
+      ],
+      "regressions": [
+        "ex_bench_barbell"
+      ],
+      "progressions": [
+        "ex_bench_incline_barbell"
+      ],
+      "injury_risk": "medium",
+      "contraindications": [
+        "肩峰撞击综合征"
+      ],
+      "tags": [
+        "上胸",
+        "卧推变体",
+        "增肌"
+      ],
+      "source_doc": "02_力量训练/力量训练全指南.md",
+      "ref_section": "三、主要肌群训练动作库/胸部"
+    },
+    {
+      "id": "ex_pushup_wall",
+      "name": "墙壁俯卧撑",
+      "name_en": "Wall Push-Up",
+      "category": "力量",
+      "muscle_group": "胸",
+      "primary_muscles": [
+        "胸大肌",
+        "三头肌"
+      ],
+      "joint": "肩+肘",
+      "equipment": "徒手",
+      "level": "beginner",
+      "type": "compound",
+      "pattern": "push",
+      "reps": "15-20",
+      "sets": "3",
+      "rest_sec": 60,
+      "cues": [
+        "面对墙站立,双手撑墙与肩同宽",
+        "身体保持一条直线,屈肘靠近墙",
+        "俯卧撑家族最简单的起点"
+      ],
+      "common_mistakes": [
+        "塌腰/翘臀",
+        "肘部过度外展"
+      ],
+      "regressions": [],
+      "progressions": [
+        "ex_pushup_knee",
+        "ex_pushup_standard"
+      ],
+      "injury_risk": "low",
+      "contraindications": [],
+      "tags": [
+        "俯卧撑入门",
+        "徒手",
+        "康复友好"
+      ],
+      "source_doc": "02_力量训练/力量训练全指南.md",
+      "ref_section": "三、主要肌群训练动作库/胸部"
+    },
+    {
+      "id": "ex_pushup_knee",
+      "name": "跪姿俯卧撑",
+      "name_en": "Knee Push-Up",
+      "category": "力量",
+      "muscle_group": "胸",
+      "primary_muscles": [
+        "胸大肌",
+        "三头肌"
+      ],
+      "joint": "肩+肘",
+      "equipment": "徒手",
+      "level": "beginner",
+      "type": "compound",
+      "pattern": "push",
+      "reps": "10-15",
+      "sets": "3",
+      "rest_sec": 60,
+      "cues": [
+        "膝盖着地,小腿交叉抬起",
+        "从膝盖到头保持一条直线",
+        "俯卧撑第二阶段,女性入门常用"
+      ],
+      "common_mistakes": [
+        "臀部上翘(失去张力)",
+        "塌腰"
+      ],
+      "regressions": [
+        "ex_pushup_wall"
+      ],
+      "progressions": [
+        "ex_pushup_standard"
+      ],
+      "injury_risk": "low",
+      "contraindications": [],
+      "tags": [
+        "俯卧撑入门",
+        "徒手"
+      ],
+      "source_doc": "02_力量训练/力量训练全指南.md",
+      "ref_section": "三、主要肌群训练动作库/胸部"
+    },
+    {
+      "id": "ex_pushup_standard",
+      "name": "标准俯卧撑",
+      "name_en": "Push-Up",
+      "category": "力量",
+      "muscle_group": "胸",
+      "primary_muscles": [
+        "胸大肌",
+        "三头肌",
+        "核心"
+      ],
+      "joint": "肩+肘",
+      "equipment": "徒手",
+      "level": "intermediate",
+      "type": "compound",
+      "pattern": "push",
+      "reps": "10-20",
+      "sets": "3-4",
+      "rest_sec": 60,
+      "cues": [
+        "手掌与肩同宽,从头到脚踝呈一条直线",
+        "肘部靠近身体(约 45° 外展)",
+        "下放至胸部接近地面,推起至肘伸直",
+        "核心收紧,避免塌腰"
+      ],
+      "common_mistakes": [
+        "塌腰/翘臀",
+        "肘部过度外展(90°)",
+        "头部前伸"
+      ],
+      "regressions": [
+        "ex_pushup_knee",
+        "ex_pushup_wall"
+      ],
+      "progressions": [
+        "ex_pushup_decline",
+        "ex_pushup_explosive"
+      ],
+      "injury_risk": "low",
+      "contraindications": [
+        "腕关节伤病"
+      ],
+      "tags": [
+        "复合动作",
+        "上肢推",
+        "徒手"
+      ],
+      "source_doc": "02_力量训练/力量训练全指南.md",
+      "ref_section": "三、主要肌群训练动作库/胸部"
+    },
+    {
+      "id": "ex_pushup_decline",
+      "name": "下斜俯卧撑",
+      "name_en": "Decline Push-Up",
+      "category": "力量",
+      "muscle_group": "胸",
+      "primary_muscles": [
+        "胸大肌下部",
+        "三角肌前束"
+      ],
+      "joint": "肩+肘",
+      "equipment": "徒手",
+      "level": "intermediate",
+      "type": "compound",
+      "pattern": "push",
+      "reps": "10-15",
+      "sets": "3",
+      "rest_sec": 60,
+      "cues": [
+        "脚抬高至凳子/箱子上,手撑地",
+        "胸大肌下部主导发力",
+        "进阶变体"
+      ],
+      "common_mistakes": [
+        "塌腰",
+        "下放幅度不够"
+      ],
+      "regressions": [
+        "ex_pushup_standard"
+      ],
+      "progressions": [
+        "ex_pushup_weighted"
+      ],
+      "injury_risk": "low",
+      "contraindications": [
+        "肩袖损伤"
+      ],
+      "tags": [
+        "胸大肌下部",
+        "俯卧撑变体"
+      ],
+      "source_doc": "02_力量训练/力量训练全指南.md",
+      "ref_section": "三、主要肌群训练动作库/胸部"
+    },
+    {
+      "id": "ex_pullup_weighted",
+      "name": "负重引体向上",
+      "name_en": "Weighted Pull-Up",
+      "category": "力量",
+      "muscle_group": "背",
+      "primary_muscles": [
+        "背阔肌",
+        "二头肌"
+      ],
+      "joint": "肩+肘",
+      "equipment": "徒手",
+      "level": "advanced",
+      "type": "compound",
+      "pattern": "pull",
+      "reps": "5-8",
+      "sets": "3-4",
+      "rest_sec": 180,
+      "cues": [
+        "悬挂于单杠,正握比肩宽",
+        "胸部向上拉,背阔肌主导",
+        "负重可用腰带+杠铃片或哑铃",
+        "进阶:标准引体 12+ 后加重"
+      ],
+      "common_mistakes": [
+        "借力摆动(kipping)",
+        "下放不充分(半程)",
+        "耸肩"
+      ],
+      "regressions": [
+        "ex_pullup_standard",
+        "ex_lat_pulldown"
+      ],
+      "progressions": [],
+      "injury_risk": "medium",
+      "contraindications": [
+        "肩袖损伤",
+        "肘关节伤病"
+      ],
+      "tags": [
+        "复合动作",
+        "上肢拉",
+        "背阔宽度+力量",
+        "进阶"
+      ],
+      "source_doc": "02_力量训练/力量训练全指南.md",
+      "ref_section": "三、主要肌群训练动作库/背部"
+    },
+    {
+      "id": "ex_lat_pulldown",
+      "name": "高位下拉",
+      "name_en": "Lat Pulldown",
+      "category": "力量",
+      "muscle_group": "背",
+      "primary_muscles": [
+        "背阔肌"
+      ],
+      "joint": "肩+肘",
+      "equipment": "器械",
+      "level": "beginner",
+      "type": "compound",
+      "pattern": "pull",
+      "reps": "10-15",
+      "sets": "3-4",
+      "rest_sec": 90,
+      "cues": [
+        "坐于器械上,大腿固定",
+        "正握比肩宽,下拉至锁骨上方",
+        "背阔肌主导,避免手臂主导",
+        "引体向上的退阶/替代"
+      ],
+      "common_mistakes": [
+        "身体后仰借力",
+        "手臂主导发力(拉得太低至颈后)"
+      ],
+      "regressions": [
+        "ex_row_seated_cable"
+      ],
+      "progressions": [
+        "ex_pullup_standard",
+        "ex_pullup_weighted"
+      ],
+      "injury_risk": "low",
+      "contraindications": [
+        "肩袖损伤"
+      ],
+      "tags": [
+        "引体退阶",
+        "器械",
+        "背阔宽度"
+      ],
+      "source_doc": "02_力量训练/力量训练全指南.md",
+      "ref_section": "三、主要肌群训练动作库/背部"
+    },
+    {
+      "id": "ex_row_barbell",
+      "name": "杠铃俯身划船",
+      "name_en": "Barbell Bent-Over Row",
+      "category": "力量",
+      "muscle_group": "背",
+      "primary_muscles": [
+        "背阔肌",
+        "斜方肌",
+        "二头肌"
+      ],
+      "joint": "肩+肘+脊柱",
+      "equipment": "杠铃",
+      "level": "intermediate",
+      "type": "compound",
+      "pattern": "pull",
+      "reps": "8-12",
+      "sets": "3-4",
+      "rest_sec": 120,
+      "cues": [
+        "屈髋至上身近平行地面,背保持中立",
+        "正握比肩宽,拉至下腹/胸下方",
+        "肘部贴近身体,肩胛后缩",
+        "经典背部厚度动作"
+      ],
+      "common_mistakes": [
+        "圆背(腰部代偿)",
+        "起身时借力甩杠铃",
+        "肘部远离身体"
+      ],
+      "regressions": [
+        "ex_row_dumbbell_single_arm",
+        "ex_row_seated_cable"
+      ],
+      "progressions": [
+        "ex_row_pendlay"
+      ],
+      "injury_risk": "medium",
+      "contraindications": [
+        "下背伤病",
+        "腰椎间盘突出"
+      ],
+      "tags": [
+        "复合动作",
+        "上肢拉",
+        "背部厚度"
+      ],
+      "source_doc": "02_力量训练/力量训练全指南.md",
+      "ref_section": "三、主要肌群训练动作库/背部"
+    },
+    {
+      "id": "ex_row_dumbbell_single_arm",
+      "name": "单臂哑铃划船",
+      "name_en": "Single-Arm Dumbbell Row",
+      "category": "力量",
+      "muscle_group": "背",
+      "primary_muscles": [
+        "背阔肌",
+        "斜方肌"
+      ],
+      "joint": "肩+肘+脊柱",
+      "equipment": "哑铃",
+      "level": "beginner",
+      "type": "compound",
+      "pattern": "pull",
+      "reps": "10-12/侧",
+      "sets": "3-4",
+      "rest_sec": 60,
+      "cues": [
+        "一手一膝撑凳,另一手持哑铃",
+        "拉至腰侧,背阔肌主导",
+        "纠正左右不平衡的经典动作"
+      ],
+      "common_mistakes": [
+        "躯干旋转",
+        "耸肩",
+        "半程"
+      ],
+      "regressions": [
+        "ex_row_seated_cable"
+      ],
+      "progressions": [
+        "ex_row_barbell"
+      ],
+      "injury_risk": "low",
+      "contraindications": [],
+      "tags": [
+        "单侧训练",
+        "背部",
+        "纠正不平衡"
+      ],
+      "source_doc": "02_力量训练/力量训练全指南.md",
+      "ref_section": "三、主要肌群训练动作库/背部"
+    },
+    {
+      "id": "ex_row_seated_cable",
+      "name": "坐姿绳索划船",
+      "name_en": "Seated Cable Row",
+      "category": "力量",
+      "muscle_group": "背",
+      "primary_muscles": [
+        "中背部",
+        "斜方肌",
+        "背阔肌"
+      ],
+      "joint": "肩+肘",
+      "equipment": "器械",
+      "level": "beginner",
+      "type": "compound",
+      "pattern": "pull",
+      "reps": "10-15",
+      "sets": "3-4",
+      "rest_sec": 90,
+      "cues": [
+        "坐于器械,双脚踩稳,膝微屈",
+        "拉至腹部,肩胛后缩",
+        "背部整体厚度训练"
+      ],
+      "common_mistakes": [
+        "身体后仰借力",
+        "耸肩"
+      ],
+      "regressions": [
+        "ex_row_dumbbell_single_arm"
+      ],
+      "progressions": [
+        "ex_row_barbell",
+        "ex_lat_pulldown"
+      ],
+      "injury_risk": "low",
+      "contraindications": [],
+      "tags": [
+        "器械",
+        "背部厚度",
+        "新手友好"
+      ],
+      "source_doc": "02_力量训练/力量训练全指南.md",
+      "ref_section": "三、主要肌群训练动作库/背部"
+    },
+    {
+      "id": "ex_press_dumbbell_shoulder",
+      "name": "哑铃肩推",
+      "name_en": "Dumbbell Shoulder Press",
+      "category": "力量",
+      "muscle_group": "肩",
+      "primary_muscles": [
+        "三角肌整体",
+        "三头肌"
+      ],
+      "joint": "肩+肘",
+      "equipment": "哑铃",
+      "level": "intermediate",
+      "type": "compound",
+      "pattern": "push",
+      "reps": "8-12",
+      "sets": "3-4",
+      "rest_sec": 90,
+      "cues": [
+        "坐或站,双手持哑铃于肩侧",
+        "推起至肘伸直,头部略前让哑铃过顶",
+        "下放至肩侧,保持核心收紧"
+      ],
+      "common_mistakes": [
+        "腰部过度前挺借力",
+        "肘部过度外展(>90°)"
+      ],
+      "regressions": [
+        "ex_press_arnold"
+      ],
+      "progressions": [
+        "ex_press_barbell_shoulder"
+      ],
+      "injury_risk": "medium",
+      "contraindications": [
+        "肩峰撞击综合征",
+        "颈椎病"
+      ],
+      "tags": [
+        "复合动作",
+        "上肢推",
+        "肩部"
+      ],
+      "source_doc": "02_力量训练/力量训练全指南.md",
+      "ref_section": "三、主要肌群训练动作库/肩部"
+    },
+    {
+      "id": "ex_raise_lateral_dumbbell",
+      "name": "哑铃侧平举",
+      "name_en": "Dumbbell Lateral Raise",
+      "category": "力量",
+      "muscle_group": "肩",
+      "primary_muscles": [
+        "三角肌中束"
+      ],
+      "joint": "肩",
+      "equipment": "哑铃",
+      "level": "beginner",
+      "type": "isolation",
+      "pattern": "push",
+      "reps": "12-20",
+      "sets": "3",
+      "rest_sec": 60,
+      "cues": [
+        "站姿,双手持哑铃于体侧",
+        "肘微屈,向两侧平举至肩高",
+        "控制下放,中束孤立发力"
+      ],
+      "common_mistakes": [
+        "耸肩(上斜方代偿)",
+        "甩哑铃借力",
+        "肘部伸直"
+      ],
+      "regressions": [],
+      "progressions": [
+        "ex_raise_lateral_cable"
+      ],
+      "injury_risk": "low",
+      "contraindications": [
+        "肩峰撞击"
+      ],
+      "tags": [
+        "肩宽",
+        "孤立动作",
+        "中束"
+      ],
+      "source_doc": "02_力量训练/力量训练全指南.md",
+      "ref_section": "三、主要肌群训练动作库/肩部"
+    },
+    {
+      "id": "ex_face_pull",
+      "name": "面拉(Face Pull)",
+      "name_en": "Face Pull",
+      "category": "力量",
+      "muscle_group": "肩",
+      "primary_muscles": [
+        "三角肌后束",
+        "斜方肌",
+        "肩袖肌群"
+      ],
+      "joint": "肩",
+      "equipment": "弹力带",
+      "level": "beginner",
+      "type": "isolation",
+      "pattern": "pull",
+      "reps": "15-20",
+      "sets": "3",
+      "rest_sec": 60,
+      "cues": [
+        "绳索调至面部高度,双手持绳",
+        "拉向面部,肘部高于肩",
+        "肩外旋(像把绳子往两边掰)",
+        "改善圆肩/肩内旋的黄金动作"
+      ],
+      "common_mistakes": [
+        "下拉至胸口(变成下拉)",
+        "肘部低于肩"
+      ],
+      "regressions": [],
+      "progressions": [
+        "ex_raise_rear_delt"
+      ],
+      "injury_risk": "low",
+      "contraindications": [],
+      "tags": [
+        "肩袖",
+        "后束",
+        "体态改善"
+      ],
+      "source_doc": "02_力量训练/力量训练全指南.md",
+      "ref_section": "三、主要肌群训练动作库/肩部"
+    },
+    {
+      "id": "ex_curl_bicep",
+      "name": "二头弯举",
+      "name_en": "Bicep Curl",
+      "category": "力量",
+      "muscle_group": "臂",
+      "primary_muscles": [
+        "肱二头肌"
+      ],
+      "joint": "肘",
+      "equipment": "哑铃",
+      "level": "beginner",
+      "type": "isolation",
+      "pattern": "pull",
+      "reps": "10-15",
+      "sets": "3",
+      "rest_sec": 60,
+      "cues": [
+        "站姿或坐姿,持哑铃于体侧",
+        "肘部固定,弯举至前臂接近垂直",
+        "控制下放(离心),不甩动"
+      ],
+      "common_mistakes": [
+        "身体前后摆动借力",
+        "肘部前移",
+        "半程"
+      ],
+      "regressions": [],
+      "progressions": [
+        "ex_curl_hammer",
+        "ex_curl_incline"
+      ],
+      "injury_risk": "low",
+      "contraindications": [
+        "肘关节伤病"
+      ],
+      "tags": [
+        "孤立动作",
+        "手臂线条",
+        "入门"
+      ],
+      "source_doc": "02_力量训练/力量训练全指南.md",
+      "ref_section": "二、复合动作 vs 孤立动作"
+    },
+    {
+      "id": "ex_pushdown_tricep",
+      "name": "三头下压",
+      "name_en": "Tricep Pushdown",
+      "category": "力量",
+      "muscle_group": "臂",
+      "primary_muscles": [
+        "肱三头肌"
+      ],
+      "joint": "肘",
+      "equipment": "器械",
+      "level": "beginner",
+      "type": "isolation",
+      "pattern": "push",
+      "reps": "12-15",
+      "sets": "3",
+      "rest_sec": 60,
+      "cues": [
+        "面对绳索机,肘部贴体侧",
+        "下压至肘伸直,顶峰收缩 1 秒",
+        "上肢推动作的稳定器"
+      ],
+      "common_mistakes": [
+        "身体前倾借力",
+        "肘部离开体侧"
+      ],
+      "regressions": [],
+      "progressions": [
+        "ex_pushdown_tricep_rope"
+      ],
+      "injury_risk": "low",
+      "contraindications": [],
+      "tags": [
+        "孤立动作",
+        "三头",
+        "器械"
+      ],
+      "source_doc": "02_力量训练/力量训练全指南.md",
+      "ref_section": "二、复合动作 vs 孤立动作"
+    },
+    {
+      "id": "ex_curl_leg_lying",
+      "name": "俯卧腿弯举",
+      "name_en": "Lying Leg Curl",
+      "category": "力量",
+      "muscle_group": "腿",
+      "primary_muscles": [
+        "腘绳肌"
+      ],
+      "joint": "膝",
+      "equipment": "器械",
+      "level": "beginner",
+      "type": "isolation",
+      "pattern": "pull",
+      "reps": "10-15",
+      "sets": "3",
+      "rest_sec": 60,
+      "cues": [
+        "俯卧器械上,脚踝固定滚垫",
+        "屈膝至最大角度,顶峰收缩",
+        "膝关节稳定器训练"
+      ],
+      "common_mistakes": [
+        "臀部抬起借力",
+        "半程"
+      ],
+      "regressions": [],
+      "progressions": [
+        "ex_curl_leg_seated"
+      ],
+      "injury_risk": "low",
+      "contraindications": [
+        "腘绳肌拉伤"
+      ],
+      "tags": [
+        "孤立动作",
+        "腘绳肌",
+        "膝稳定"
+      ],
+      "source_doc": "02_力量训练/力量训练全指南.md",
+      "ref_section": "二、复合动作 vs 孤立动作"
+    },
+    {
+      "id": "ex_extension_leg",
+      "name": "腿伸展",
+      "name_en": "Leg Extension",
+      "category": "力量",
+      "muscle_group": "腿",
+      "primary_muscles": [
+        "股四头肌"
+      ],
+      "joint": "膝",
+      "equipment": "器械",
+      "level": "beginner",
+      "type": "isolation",
+      "pattern": "push",
+      "reps": "12-15",
+      "sets": "3",
+      "rest_sec": 60,
+      "cues": [
+        "坐于器械,脚踝固定滚垫",
+        "伸膝至最大角度,顶峰收缩",
+        "膝关节稳定器训练"
+      ],
+      "common_mistakes": [
+        "借力甩起重量",
+        "锁死膝盖(过度伸膝)"
+      ],
+      "regressions": [],
+      "progressions": [],
+      "injury_risk": "low",
+      "contraindications": [
+        "膝关节术后早期"
+      ],
+      "tags": [
+        "孤立动作",
+        "股四",
+        "膝稳定"
+      ],
+      "source_doc": "02_力量训练/力量训练全指南.md",
+      "ref_section": "二、复合动作 vs 孤立动作"
+    },
+    {
+      "id": "ex_calf_raise",
+      "name": "站姿提踵",
+      "name_en": "Standing Calf Raise",
+      "category": "力量",
+      "muscle_group": "小腿",
+      "primary_muscles": [
+        "小腿三头肌(腓肠肌+比目鱼肌)"
+      ],
+      "joint": "踝",
+      "equipment": "徒手",
+      "level": "beginner",
+      "type": "isolation",
+      "pattern": "push",
+      "reps": "15-20",
+      "sets": "3-4",
+      "rest_sec": 45,
+      "cues": [
+        "站于台阶边缘,前脚掌着力",
+        "踮脚至最高点,顶峰收缩",
+        "下放至脚跟低于台阶,充分拉伸",
+        "踝关节力量基础"
+      ],
+      "common_mistakes": [
+        "半程(不充分拉伸/收缩)",
+        "弹震式"
+      ],
+      "regressions": [],
+      "progressions": [
+        "ex_calf_raise_weighted"
+      ],
+      "injury_risk": "low",
+      "contraindications": [
+        "跟腱炎"
+      ],
+      "tags": [
+        "孤立动作",
+        "小腿",
+        "踝稳定"
+      ],
+      "source_doc": "02_力量训练/力量训练全指南.md",
+      "ref_section": "二、复合动作 vs 孤立动作"
+    },
+    {
+      "id": "ex_stretch_quad_standing",
+      "name": "站姿股四头肌拉伸",
+      "name_en": "Standing Quad Stretch",
+      "category": "柔韧",
+      "muscle_group": "腿",
+      "primary_muscles": [
+        "股四头肌"
+      ],
+      "joint": "膝+髋",
+      "equipment": "徒手",
+      "level": "beginner",
+      "type": "static_stretch",
+      "pattern": "stretch",
+      "reps": "60秒/侧",
+      "sets": "2-3",
+      "rest_sec": 0,
+      "cues": [
+        "单脚站立,另一脚脚跟向臀部拉",
+        "膝盖垂直向下,不要外展",
+        "保持 60 秒/侧,训练后必做"
+      ],
+      "common_mistakes": [
+        "膝盖外展(拉伸感下降)",
+        "弓背/塌腰",
+        "失去平衡(可扶墙)"
+      ],
+      "regressions": [],
+      "progressions": [
+        "ex_stretch_quad_lying_prone"
+      ],
+      "injury_risk": "low",
+      "contraindications": [
+        "膝关节急性损伤"
+      ],
+      "tags": [
+        "静态拉伸",
+        "下肢",
+        "训练后"
+      ],
+      "source_doc": "04_柔韧与拉伸/柔韧性与拉伸完全指南.md",
+      "ref_section": "三、全身各部位拉伸指南/下肢"
+    },
+    {
+      "id": "ex_stretch_hamstring_seated",
+      "name": "坐姿直腿前屈",
+      "name_en": "Seated Straight-Leg Hamstring Stretch",
+      "category": "柔韧",
+      "muscle_group": "腿",
+      "primary_muscles": [
+        "腘绳肌",
+        "下背"
+      ],
+      "joint": "髋",
+      "equipment": "徒手",
+      "level": "beginner",
+      "type": "static_stretch",
+      "pattern": "stretch",
+      "reps": "60秒",
+      "sets": "2-3",
+      "rest_sec": 0,
+      "cues": [
+        "坐于垫上,双腿伸直并拢",
+        "从髋部折叠,手指向脚尖方向伸",
+        "保持背部延展,不要圆背"
+      ],
+      "common_mistakes": [
+        "圆背前屈(腰部代偿)",
+        "膝盖弯曲(失去拉伸感)"
+      ],
+      "regressions": [],
+      "progressions": [
+        "ex_stretch_hamstring_single_leg"
+      ],
+      "injury_risk": "low",
+      "contraindications": [
+        "腰椎间盘突出"
+      ],
+      "tags": [
+        "静态拉伸",
+        "腘绳肌",
+        "训练后"
+      ],
+      "source_doc": "04_柔韧与拉伸/柔韧性与拉伸完全指南.md",
+      "ref_section": "三、全身各部位拉伸指南/下肢"
+    },
+    {
+      "id": "ex_stretch_glute_4figure",
+      "name": "仰卧臀大肌拉伸(4字形)",
+      "name_en": "Supine 4-Figure Glute Stretch",
+      "category": "柔韧",
+      "muscle_group": "臀",
+      "primary_muscles": [
+        "臀大肌",
+        "梨状肌"
+      ],
+      "joint": "髋",
+      "equipment": "徒手",
+      "level": "beginner",
+      "type": "static_stretch",
+      "pattern": "stretch",
+      "reps": "90秒/侧",
+      "sets": "2-3",
+      "rest_sec": 0,
+      "cues": [
+        "仰卧,一腿屈膝,脚踝放于另一腿膝上(4字形)",
+        "双手抱后侧大腿向胸部拉",
+        "保持 90 秒/侧,梨状肌综合症友好"
+      ],
+      "common_mistakes": [
+        "腰部抬起",
+        "头部抬起(脖子紧张)"
+      ],
+      "regressions": [],
+      "progressions": [
+        "ex_stretch_pigeon"
+      ],
+      "injury_risk": "low",
+      "contraindications": [
+        "髋关节置换术后"
+      ],
+      "tags": [
+        "静态拉伸",
+        "臀大肌",
+        "梨状肌",
+        "康复"
+      ],
+      "source_doc": "04_柔韧与拉伸/柔韧性与拉伸完全指南.md",
+      "ref_section": "三、全身各部位拉伸指南/下肢"
+    },
+    {
+      "id": "ex_stretch_hip_flexor_kneeling",
+      "name": "跪姿髂腰肌拉伸",
+      "name_en": "Kneeling Hip Flexor Stretch",
+      "category": "柔韧",
+      "muscle_group": "髋",
+      "primary_muscles": [
+        "髂腰肌",
+        "股四头肌"
+      ],
+      "joint": "髋",
+      "equipment": "徒手",
+      "level": "beginner",
+      "type": "static_stretch",
+      "pattern": "stretch",
+      "reps": "60秒/侧",
+      "sets": "2-3",
+      "rest_sec": 0,
+      "cues": [
+        "前腿屈 90°,后腿膝盖着地",
+        "骨盆前移前倾,感受髋前侧拉伸",
+        "久坐人群必做"
+      ],
+      "common_mistakes": [
+        "前膝过度前移超过脚尖",
+        "腰部前挺代偿"
+      ],
+      "regressions": [
+        "ex_stretch_hip_flexor_lunge"
+      ],
+      "progressions": [],
+      "injury_risk": "low",
+      "contraindications": [
+        "膝关节伤病"
+      ],
+      "tags": [
+        "静态拉伸",
+        "髋屈肌",
+        "久坐人群"
+      ],
+      "source_doc": "04_柔韧与拉伸/柔韧性与拉伸完全指南.md",
+      "ref_section": "三、全身各部位拉伸指南/下肢"
+    },
+    {
+      "id": "ex_stretch_butterfly",
+      "name": "蝴蝶式(坐姿内收肌拉伸)",
+      "name_en": "Butterfly Stretch",
+      "category": "柔韧",
+      "muscle_group": "髋",
+      "primary_muscles": [
+        "内收肌"
+      ],
+      "joint": "髋",
+      "equipment": "徒手",
+      "level": "beginner",
+      "type": "static_stretch",
+      "pattern": "stretch",
+      "reps": "60秒",
+      "sets": "2-3",
+      "rest_sec": 0,
+      "cues": [
+        "坐姿,脚心相对,膝盖向两侧下沉",
+        "上身保持延展,可轻压膝盖加强",
+        "内收肌群拉伸"
+      ],
+      "common_mistakes": [
+        "弓背前屈(腰部代偿)",
+        "用蛮力压膝盖"
+      ],
+      "regressions": [],
+      "progressions": [
+        "ex_stretch_side_lunge"
+      ],
+      "injury_risk": "low",
+      "contraindications": [
+        "髋关节置换"
+      ],
+      "tags": [
+        "静态拉伸",
+        "内收肌",
+        "髋活动度"
+      ],
+      "source_doc": "04_柔韧与拉伸/柔韧性与拉伸完全指南.md",
+      "ref_section": "三、全身各部位拉伸指南/下肢"
+    },
+    {
+      "id": "ex_stretch_calf_soleus",
+      "name": "比目鱼肌拉伸(踩墙)",
+      "name_en": "Soleus Calf Stretch",
+      "category": "柔韧",
+      "muscle_group": "小腿",
+      "primary_muscles": [
+        "比目鱼肌"
+      ],
+      "joint": "踝",
+      "equipment": "徒手",
+      "level": "beginner",
+      "type": "static_stretch",
+      "pattern": "stretch",
+      "reps": "30秒/侧",
+      "sets": "2-3",
+      "rest_sec": 0,
+      "cues": [
+        "双手扶墙,前脚踩墙中段",
+        "后腿伸直,脚跟不离地,身体前倾",
+        "30 秒/侧,小腿深层拉伸"
+      ],
+      "common_mistakes": [
+        "脚跟离地(失去拉伸)",
+        "膝盖弯曲(变成腓肠肌拉伸)"
+      ],
+      "regressions": [],
+      "progressions": [],
+      "injury_risk": "low",
+      "contraindications": [
+        "跟腱炎"
+      ],
+      "tags": [
+        "静态拉伸",
+        "小腿",
+        "踝活动度"
+      ],
+      "source_doc": "04_柔韧与拉伸/柔韧性与拉伸完全指南.md",
+      "ref_section": "三、全身各部位拉伸指南/下肢"
+    },
+    {
+      "id": "ex_stretch_calf_gastrocnemius",
+      "name": "腓肠肌拉伸(弓步)",
+      "name_en": "Gastrocnemius Calf Stretch",
+      "category": "柔韧",
+      "muscle_group": "小腿",
+      "primary_muscles": [
+        "腓肠肌"
+      ],
+      "joint": "踝",
+      "equipment": "徒手",
+      "level": "beginner",
+      "type": "static_stretch",
+      "pattern": "stretch",
+      "reps": "30秒/侧",
+      "sets": "2-3",
+      "rest_sec": 0,
+      "cues": [
+        "弓步姿势,后腿伸直,脚跟不离地",
+        "前腿屈膝承重,身体前移",
+        "30 秒/侧,腓肠肌拉伸"
+      ],
+      "common_mistakes": [
+        "后脚跟离地",
+        "后腿膝盖弯曲"
+      ],
+      "regressions": [],
+      "progressions": [],
+      "injury_risk": "low",
+      "contraindications": [
+        "跟腱炎"
+      ],
+      "tags": [
+        "静态拉伸",
+        "腓肠肌",
+        "小腿"
+      ],
+      "source_doc": "04_柔韧与拉伸/柔韧性与拉伸完全指南.md",
+      "ref_section": "三、全身各部位拉伸指南/下肢"
+    },
+    {
+      "id": "ex_stretch_chest_doorway",
+      "name": "门框胸部拉伸",
+      "name_en": "Doorway Chest Stretch",
+      "category": "柔韧",
+      "muscle_group": "胸",
+      "primary_muscles": [
+        "胸大肌"
+      ],
+      "joint": "肩",
+      "equipment": "徒手",
+      "level": "beginner",
+      "type": "static_stretch",
+      "pattern": "stretch",
+      "reps": "60秒/侧",
+      "sets": "2-3",
+      "rest_sec": 0,
+      "cues": [
+        "手臂弯曲 90° 靠在门框两侧",
+        "身体向前推进,感受胸前拉伸",
+        "改善圆肩/肩内旋"
+      ],
+      "common_mistakes": [
+        "腰部过度前挺(代偿)",
+        "手臂位置过高(变成肩拉伸)"
+      ],
+      "regressions": [],
+      "progressions": [
+        "ex_stretch_chest_corner"
+      ],
+      "injury_risk": "low",
+      "contraindications": [
+        "肩袖损伤"
+      ],
+      "tags": [
+        "静态拉伸",
+        "胸大肌",
+        "体态改善"
+      ],
+      "source_doc": "04_柔韧与拉伸/柔韧性与拉伸完全指南.md",
+      "ref_section": "三、全身各部位拉伸指南/上肢"
+    },
+    {
+      "id": "ex_stretch_shoulder_cross",
+      "name": "肩部交叉拉伸(后束)",
+      "name_en": "Cross-Body Shoulder Stretch",
+      "category": "柔韧",
+      "muscle_group": "肩",
+      "primary_muscles": [
+        "三角肌后束"
+      ],
+      "joint": "肩",
+      "equipment": "徒手",
+      "level": "beginner",
+      "type": "static_stretch",
+      "pattern": "stretch",
+      "reps": "30秒/侧",
+      "sets": "2-3",
+      "rest_sec": 0,
+      "cues": [
+        "一手伸直在胸前横过",
+        "用另一手轻拉向身体方向",
+        "30 秒/侧,后束拉伸"
+      ],
+      "common_mistakes": [
+        "耸肩(拉伸感下降)",
+        "用力过猛"
+      ],
+      "regressions": [],
+      "progressions": [],
+      "injury_risk": "low",
+      "contraindications": [],
+      "tags": [
+        "静态拉伸",
+        "肩后束",
+        "训练后"
+      ],
+      "source_doc": "04_柔韧与拉伸/柔韧性与拉伸完全指南.md",
+      "ref_section": "三、全身各部位拉伸指南/上肢"
+    },
+    {
+      "id": "ex_warmup_jog_inplace",
+      "name": "慢速原地跑",
+      "name_en": "Slow In-Place Jog",
+      "category": "动态热身",
+      "muscle_group": "全身",
+      "primary_muscles": [
+        "心肺",
+        "下肢"
+      ],
+      "joint": "髋+膝+踝",
+      "equipment": "徒手",
+      "level": "beginner",
+      "type": "warmup",
+      "pattern": "warmup",
+      "reps": "1分钟",
+      "sets": "1",
+      "rest_sec": 0,
+      "cues": [
+        "原地小步跑,逐渐提升强度",
+        "目标:提升心率到热身区间",
+        "动态热身第 1 项"
+      ],
+      "common_mistakes": [
+        "一开始就冲刺",
+        "过度高抬腿"
+      ],
+      "regressions": [],
+      "progressions": [
+        "ex_warmup_leg_swing"
+      ],
+      "injury_risk": "low",
+      "contraindications": [],
+      "tags": [
+        "动态热身",
+        "心率提升",
+        "训练前"
+      ],
+      "source_doc": "04_柔韧与拉伸/柔韧性与拉伸完全指南.md",
+      "ref_section": "四、运动前动态热身模板"
+    },
+    {
+      "id": "ex_warmup_leg_swing",
+      "name": "腿摆动(前向/侧向)",
+      "name_en": "Leg Swing (Forward/Lateral)",
+      "category": "动态热身",
+      "muscle_group": "髋",
+      "primary_muscles": [
+        "髋屈肌",
+        "腘绳肌",
+        "髋外展肌"
+      ],
+      "joint": "髋",
+      "equipment": "徒手",
+      "level": "beginner",
+      "type": "mobility",
+      "pattern": "mobility",
+      "reps": "10次/侧/方向",
+      "sets": "1-2",
+      "rest_sec": 0,
+      "cues": [
+        "扶墙或栏杆保持平衡",
+        "前向腿摆动:前后大幅摆动",
+        "侧向腿摆动:左右大幅摆动",
+        "激活髋关节活动度"
+      ],
+      "common_mistakes": [
+        "躯干跟随摆动(失去稳定)",
+        "幅度过小"
+      ],
+      "regressions": [
+        "ex_warmup_jog_inplace"
+      ],
+      "progressions": [
+        "ex_warmup_swiss_balance"
+      ],
+      "injury_risk": "low",
+      "contraindications": [
+        "髋关节伤病"
+      ],
+      "tags": [
+        "动态热身",
+        "髋活动度",
+        "训练前"
+      ],
+      "source_doc": "04_柔韧与拉伸/柔韧性与拉伸完全指南.md",
+      "ref_section": "四、运动前动态热身模板"
+    },
+    {
+      "id": "ex_warmup_hip_circles",
+      "name": "髋关节绕环",
+      "name_en": "Hip Circles",
+      "category": "动态热身",
+      "muscle_group": "髋",
+      "primary_muscles": [
+        "髋关节周围肌群"
+      ],
+      "joint": "髋",
+      "equipment": "徒手",
+      "level": "beginner",
+      "type": "mobility",
+      "pattern": "mobility",
+      "reps": "10次/方向",
+      "sets": "1",
+      "rest_sec": 0,
+      "cues": [
+        "双手叉腰,单腿站立,另一腿屈膝抬起",
+        "屈髋腿做大幅圆周运动(顺时针+逆时针)",
+        "激活髋关节活动度"
+      ],
+      "common_mistakes": [
+        "躯干代偿",
+        "幅度过小"
+      ],
+      "regressions": [
+        "ex_warmup_jog_inplace"
+      ],
+      "progressions": [
+        "ex_warmup_leg_swing"
+      ],
+      "injury_risk": "low",
+      "contraindications": [
+        "髋关节伤病"
+      ],
+      "tags": [
+        "动态热身",
+        "髋活动度",
+        "训练前"
+      ],
+      "source_doc": "04_柔韧与拉伸/柔韧性与拉伸完全指南.md",
+      "ref_section": "四、运动前动态热身模板"
+    },
+    {
+      "id": "ex_warmup_arm_circles",
+      "name": "手臂绕环",
+      "name_en": "Arm Circles",
+      "category": "动态热身",
+      "muscle_group": "肩",
+      "primary_muscles": [
+        "肩关节周围肌群"
+      ],
+      "joint": "肩",
+      "equipment": "徒手",
+      "level": "beginner",
+      "type": "mobility",
+      "pattern": "mobility",
+      "reps": "10次/方向",
+      "sets": "1",
+      "rest_sec": 0,
+      "cues": [
+        "双臂侧平举,做大圆周运动",
+        "先小圈后大圈,顺时针+逆时针",
+        "激活肩关节活动度"
+      ],
+      "common_mistakes": [
+        "动作过快(失去控制)",
+        "耸肩"
+      ],
+      "regressions": [],
+      "progressions": [
+        "ex_warmup_band_dislocate"
+      ],
+      "injury_risk": "low",
+      "contraindications": [
+        "肩袖损伤"
+      ],
+      "tags": [
+        "动态热身",
+        "肩活动度",
+        "训练前"
+      ],
+      "source_doc": "04_柔韧与拉伸/柔韧性与拉伸完全指南.md",
+      "ref_section": "四、运动前动态热身模板"
+    },
+    {
+      "id": "ex_mobility_cat_cow",
+      "name": "猫牛式",
+      "name_en": "Cat-Cow",
+      "category": "动态热身",
+      "muscle_group": "全身",
+      "primary_muscles": [
+        "脊柱周围肌群",
+        "核心"
+      ],
+      "joint": "脊柱",
+      "equipment": "徒手",
+      "level": "beginner",
+      "type": "mobility",
+      "pattern": "mobility",
+      "reps": "10-15次",
+      "sets": "1-2",
+      "rest_sec": 0,
+      "cues": [
+        "四足支撑(手肩同宽,膝髋同宽)",
+        "吸气→牛式:背部向下凹陷(抬头)",
+        "呼气→猫式:背部向上弓起(低头)",
+        "缓慢进行,感受脊柱逐节屈伸"
+      ],
+      "common_mistakes": [
+        "动作过快(失去节段感)",
+        "手膝位置不对"
+      ],
+      "regressions": [],
+      "progressions": [
+        "ex_mobility_thoracic_rotation"
+      ],
+      "injury_risk": "low",
+      "contraindications": [
+        "颈椎病急性期",
+        "腕关节伤病"
+      ],
+      "tags": [
+        "动态热身",
+        "脊柱活动度",
+        "训练前/后"
+      ],
+      "source_doc": "04_柔韧与拉伸/柔韧性与拉伸完全指南.md",
+      "ref_section": "三、全身各部位拉伸指南/脊柱活动度"
+    },
+    {
+      "id": "ex_core_plank",
+      "name": "平板支撑",
+      "name_en": "Plank",
+      "category": "核心",
+      "muscle_group": "核心",
+      "primary_muscles": [
+        "腹横肌",
+        "腹直肌",
+        "竖脊肌",
+        "臀大肌"
+      ],
+      "joint": "脊柱+肩+肘",
+      "equipment": "徒手",
+      "level": "beginner",
+      "type": "isolation",
+      "pattern": "push",
+      "reps": "30-60秒",
+      "sets": "3-4",
+      "rest_sec": 45,
+      "cues": [
+        "俯卧,前臂和脚尖着地",
+        "身体呈一条直线,核心收紧",
+        "不要塌腰或翘臀",
+        "基础核心稳定动作"
+      ],
+      "common_mistakes": [
+        "塌腰(腰椎代偿)",
+        "翘臀(失去张力)",
+        "耸肩"
+      ],
+      "regressions": [
+        "ex_core_plank_knee"
+      ],
+      "progressions": [
+        "ex_core_plank_single_arm"
+      ],
+      "injury_risk": "low",
+      "contraindications": [
+        "腕/肘/肩伤病",
+        "腰椎间盘突出"
+      ],
+      "tags": [
+        "核心稳定",
+        "静态",
+        "基础"
+      ],
+      "source_doc": "06_专项运动/常见球类与户外运动指南.md",
+      "ref_section": "二、羽毛球运动/羽毛球核心力量训练"
+    },
+    {
+      "id": "ex_core_plank_single_arm",
+      "name": "单臂抬起平板支撑",
+      "name_en": "Single-Arm Plank",
+      "category": "核心",
+      "muscle_group": "核心",
+      "primary_muscles": [
+        "腹横肌",
+        "腹斜肌",
+        "肩稳定肌"
+      ],
+      "joint": "脊柱+肩+肘",
+      "equipment": "徒手",
+      "level": "intermediate",
+      "type": "isolation",
+      "pattern": "push",
+      "reps": "45秒/侧",
+      "sets": "3",
+      "rest_sec": 45,
+      "cues": [
+        "平板支撑基础上,单臂向前伸直",
+        "保持躯干不旋转,核心抗旋转",
+        "羽毛球等球类专项常用"
+      ],
+      "common_mistakes": [
+        "躯干旋转(失去稳定)",
+        "塌腰"
+      ],
+      "regressions": [
+        "ex_core_plank"
+      ],
+      "progressions": [
+        "ex_core_plank_single_limb"
+      ],
+      "injury_risk": "low",
+      "contraindications": [
+        "肩关节伤病"
+      ],
+      "tags": [
+        "核心稳定",
+        "抗旋转",
+        "球类专项"
+      ],
+      "source_doc": "06_专项运动/常见球类与户外运动指南.md",
+      "ref_section": "二、羽毛球运动/羽毛球核心力量训练"
+    },
+    {
+      "id": "ex_pushup_explosive",
+      "name": "爆发型俯卧撑",
+      "name_en": "Explosive Push-Up",
+      "category": "力量",
+      "muscle_group": "胸",
+      "primary_muscles": [
+        "胸大肌",
+        "三头肌",
+        "核心"
+      ],
+      "joint": "肩+肘",
+      "equipment": "徒手",
+      "level": "intermediate",
+      "type": "plyometric",
+      "pattern": "push",
+      "reps": "6-10",
+      "sets": "3-4",
+      "rest_sec": 90,
+      "cues": [
+        "标准俯卧撑姿势,推起时用力使双手离地",
+        "上肢推爆发力训练,羽毛球/篮球常用",
+        "落地时屈肘缓冲"
+      ],
+      "common_mistakes": [
+        "半程(下放不充分)",
+        "落地僵硬"
+      ],
+      "regressions": [
+        "ex_pushup_standard"
+      ],
+      "progressions": [
+        "ex_pushup_clap"
+      ],
+      "injury_risk": "medium",
+      "contraindications": [
+        "腕/肩/肘伤病"
+      ],
+      "tags": [
+        "爆发力",
+        "Plyometric",
+        "球类专项"
+      ],
+      "source_doc": "06_专项运动/常见球类与户外运动指南.md",
+      "ref_section": "二、羽毛球运动/羽毛球核心力量训练"
+    },
+    {
+      "id": "ex_pushup_decline_sport",
+      "name": "上斜俯卧撑(脚高位)",
+      "name_en": "Decline Push-Up (Feet Elevated)",
+      "category": "力量",
+      "muscle_group": "胸",
+      "primary_muscles": [
+        "胸大肌上部(锁骨部)",
+        "三角肌前束"
+      ],
+      "joint": "肩+肘",
+      "equipment": "徒手",
+      "level": "intermediate",
+      "type": "compound",
+      "pattern": "push",
+      "reps": "10-15",
+      "sets": "3",
+      "rest_sec": 60,
+      "cues": [
+        "脚抬高至凳子/箱子上,手撑地",
+        "身体保持一条直线",
+        "胸大肌上部(锁骨部)主导"
+      ],
+      "common_mistakes": [
+        "塌腰",
+        "半程"
+      ],
+      "regressions": [
+        "ex_pushup_standard"
+      ],
+      "progressions": [
+        "ex_pushup_weighted"
+      ],
+      "injury_risk": "low",
+      "contraindications": [
+        "肩峰撞击"
+      ],
+      "tags": [
+        "上胸",
+        "俯卧撑变体"
+      ],
+      "source_doc": "02_力量训练/力量训练全指南.md",
+      "ref_section": "三、主要肌群训练动作库/胸部"
+    }
+  ]
+}
