@@ -1,0 +1,714 @@
+{
+  "version": "0.1.0",
+  "schema_version": "0.1",
+  "generated_at": "2026-08-26",
+  "source_root": "_SportLib/",
+  "sources": [
+    "07_运动损伤/运动损伤预防与康复指南.md"
+  ],
+  "schema": {
+    "id": "rehab_kb.json 内的唯一 id,格式 rehab_<body>_<short>",
+    "name": "伤病中文名",
+    "name_en": "伤病英文/学术名(可选)",
+    "category": "急性|慢性",
+    "type": "肌肉|韧带|关节|肌腱|综合症|其他",
+    "body_part": "踝|膝|肩|腰|肘|腕|髋|小腿|大腿|全身",
+    "severity_grades": "分级标准 I/II/III 度,可选字段",
+    "symptoms": [
+      "症状/表现"
+    ],
+    "causes": [
+      "病因/诱因"
+    ],
+    "red_flags": [
+      "警示信号(立即就医)"
+    ],
+    "rehab_phases": [
+      {
+        "phase": "阶段名,急性期/炎症期/增生期/重塑期/术前/术后早期/力量期/进阶期/重返运动/...",
+        "time_window": "时间窗,如 0-72h / 0-2周 / 2-12周",
+        "goal": "阶段目标",
+        "interventions": [
+          "具体干预措施,如 PEACE原则 / 弹力带抗阻 / 提踵训练"
+        ],
+        "dosage": "剂量,如 3×15 / 每天 1-2 次",
+        "precautions": [
+          "注意事项"
+        ]
+      }
+    ],
+    "key_exercises": [
+      "关键康复动作(Phase 1 与 exercises.json id 对接预留)"
+    ],
+    "prevention": [
+      "预防措施"
+    ],
+    "when_to_see_doctor": [
+      "就医判断标准"
+    ],
+    "prognosis": "预后/恢复时间预估",
+    "source_doc": "来源 md 相对路径",
+    "ref_section": "在源 md 中所属章节",
+    "tags": [
+      "检索标签,如 跑步膝 / 篮球常见 / 术后"
+    ]
+  },
+  "stats": {
+    "total": 7,
+    "by_category": {
+      "急性": 5,
+      "慢性": 2
+    },
+    "by_type": {
+      "肌肉": 1,
+      "韧带": 2,
+      "肌腱": 1,
+      "综合症": 2,
+      "其他": 1
+    },
+    "by_body_part": {
+      "踝": 1,
+      "膝": 2,
+      "肩": 1,
+      "小腿": 1,
+      "全身": 2
+    }
+  },
+  "principles": {
+    "name": "PEACE & LOVE 原则(替代传统 RICE)",
+    "acute_phase": {
+      "label": "急性期(0~72 小时)→ PEACE",
+      "items": [
+        { "letter": "P", "action": "Protection 保护", "detail": "停止运动,避免加重" },
+        { "letter": "E", "action": "Elevation 抬高", "detail": "患肢高于心脏,减少肿胀" },
+        { "letter": "A", "action": "Avoid anti-inflammatories 避免抗炎药", "detail": "炎症是修复过程,部分抗炎药会延缓愈合" },
+        { "letter": "C", "action": "Compression 加压", "detail": "弹性绷带包扎,减少肿胀" },
+        { "letter": "E", "action": "Education 健康教育", "detail": "了解伤情,避免过度治疗" }
+      ]
+    },
+    "recovery_phase": {
+      "label": "恢复期(72 小时后)→ LOVE",
+      "items": [
+        { "letter": "L", "action": "Load 负荷", "detail": "早期渐进性负重(无痛为原则)" },
+        { "letter": "O", "action": "Optimism 保持乐观", "detail": "心理因素影响恢复" },
+        { "letter": "V", "action": "Vascularisation 血液循环", "detail": "早期无痛有氧促进血流" },
+        { "letter": "E", "action": "Exercise 运动", "detail": "主动康复训练恢复功能" }
+      ]
+    }
+  },
+  "warning_signals": [
+    { "signal": "受伤时有\"砰\"的响声(韧带/肌肉断裂)", "action": "立即就医" },
+    { "signal": "严重肿胀(24 小时内)", "action": "就医" },
+    { "signal": "关节明显不稳定", "action": "就医" },
+    { "signal": "无法负重(完全不能)", "action": "就医" },
+    { "signal": "骨压痛/畸形(可能骨折)", "action": "急诊/骨科" },
+    { "signal": "麻木/刺痛持续", "action": "就医" },
+    { "signal": "疼痛超过 2 周无好转", "action": "就医" }
+  ],
+  "prevention_principles": [
+    { "name": "循序渐进", "detail": "跑量每周增幅 < 10%(10% 原则)" },
+    { "name": "充分热身", "detail": "10 分钟动态热身后再运动" },
+    { "name": "力量训练", "detail": "每周 2 次下肢力量(保护关节)" },
+    { "name": "拉伸/筋膜放松", "detail": "训练后常规执行" },
+    { "name": "充足睡眠", "detail": "7~9 小时,修复需要" },
+    { "name": "营养保证", "detail": "蛋白质 + 碳水 + 水分" },
+    { "name": "替换跑鞋", "detail": "每 500~800 公里更换跑鞋" },
+    { "name": "重视疼痛信号", "detail": "疼痛是身体报警,不要\"忍痛训练\"" }
+  ],
+  "injuries": [
+    {
+      "id": "rehab_muscle_strain_generic",
+      "name": "肌肉拉伤(通用)",
+      "name_en": "Muscle Strain",
+      "category": "急性",
+      "type": "肌肉",
+      "body_part": "全身",
+      "severity_grades": [
+        { "grade": "I 度(轻度)", "presentation": "轻度疼痛,力量几乎不受影响", "recovery": "1~3 周" },
+        { "grade": "II 度(中度)", "presentation": "明显疼痛,力量下降,部分纤维撕裂", "recovery": "4~8 周" },
+        { "grade": "III 度(重度)", "presentation": "剧烈疼痛,无法收缩,肌肉断裂", "recovery": "8 周~数月,可能需手术" }
+      ],
+      "symptoms": [
+        "局部突发疼痛",
+        "力量下降",
+        "肿胀/瘀斑(II/III 度)",
+        "肌肉轮廓异常(III 度)"
+      ],
+      "causes": [
+        "肌肉未充分热身",
+        "负荷突增超过肌纤维承受上限",
+        "弹性差/疲劳"
+      ],
+      "red_flags": [
+        "听到\"砰\"声 + 立即无力",
+        "肌肉出现明显凹陷",
+        "肿胀进行性加重"
+      ],
+      "rehab_phases": [
+        {
+          "phase": "急性期",
+          "time_window": "0~72h",
+          "goal": "控制肿胀、止痛",
+          "interventions": [
+            "PEACE 原则:保护、抬高、加压、健康教育"
+          ],
+          "precautions": [
+            "避免抗炎药(可能延缓愈合)",
+            "避免按摩/热敷"
+          ]
+        },
+        {
+          "phase": "炎症期",
+          "time_window": "3~7 天",
+          "goal": "维持关节活动度",
+          "interventions": [
+            "被动活动:无痛范围内关节活动"
+          ],
+          "precautions": [
+            "不引入抗阻"
+          ]
+        },
+        {
+          "phase": "增生期",
+          "time_window": "7~21 天",
+          "goal": "恢复基础力量",
+          "interventions": [
+            "弹力带抗阻",
+            "等长收缩(不同角度)"
+          ],
+          "dosage": "3 组,每组 12-15 次"
+        },
+        {
+          "phase": "重塑期",
+          "time_window": "3~8 周",
+          "goal": "恢复运动功能",
+          "interventions": [
+            "功能训练:逐步增加负荷",
+            "向心 + 离心 + 爆发力"
+          ],
+          "precautions": [
+            "无痛原则"
+          ]
+        }
+      ],
+      "key_exercises": [],
+      "prevention": [
+        "训练前动态热身 ≥ 10 分钟",
+        "力量训练覆盖目标肌群",
+        "训练后静态拉伸 + 筋膜放松",
+        "训练负荷渐进增加(< 10%/周)"
+      ],
+      "when_to_see_doctor": [
+        "听到\"砰\"声",
+        "立即严重肿胀/瘀斑",
+        "力量完全丧失",
+        "疼痛超过 2 周无好转"
+      ],
+      "prognosis": "I 度 1-3 周,II 度 4-8 周,III 度 8 周+ 需手术",
+      "source_doc": "07_运动损伤/运动损伤预防与康复指南.md",
+      "ref_section": "二、常见软组织损伤 > 肌肉拉伤",
+      "tags": ["通用", "肌肉", "急性", "PEACE&LOVE"]
+    },
+    {
+      "id": "rehab_ankle_sprain",
+      "name": "踝关节扭伤",
+      "name_en": "Lateral Ankle Sprain",
+      "category": "急性",
+      "type": "韧带",
+      "body_part": "踝",
+      "severity_grades": [
+        { "grade": "I 度", "ligament_damage": "轻微拉伸", "presentation": "轻度肿胀/疼痛,功能几乎不受限" },
+        { "grade": "II 度", "ligament_damage": "部分撕裂", "presentation": "中度肿胀、瘀斑,功能明显受限" },
+        { "grade": "III 度", "ligament_damage": "完全断裂", "presentation": "重度肿胀,完全无法负重" }
+      ],
+      "symptoms": [
+        "踝外侧/内侧突发疼痛",
+        "肿胀、瘀斑",
+        "负重困难"
+      ],
+      "causes": [
+        "跳跃落地不稳",
+        "不平地面内翻/外翻",
+        "本体感觉差(常见反复扭伤)"
+      ],
+      "red_flags": [
+        "完全无法负重",
+        "骨压痛(排除骨折)",
+        "畸形"
+      ],
+      "rehab_phases": [
+        {
+          "phase": "阶段一",
+          "time_window": "0~2 周",
+          "goal": "消肿 + 维持活动度",
+          "interventions": [
+            "疼痛允许范围内活动踝关节(画圈、ABC 字母)",
+            "弹力带抗阻(4 方向:上、下、内、外)",
+            "提踵训练(双腿 → 单腿)",
+            "平衡板单腿站立(从睁眼 → 闭眼)"
+          ],
+          "dosage": "3×15,每天 1~2 次"
+        },
+        {
+          "phase": "阶段二",
+          "time_window": "2~4 周",
+          "goal": "恢复负重 + 跳跃能力",
+          "interventions": [
+            "渐进性负重步行",
+            "跳跃训练(双脚 → 单脚,从轻到重)",
+            "侧向移动训练"
+          ]
+        },
+        {
+          "phase": "阶段三",
+          "time_window": "4~8 周",
+          "goal": "重返运动",
+          "interventions": [
+            "敏捷性训练",
+            "跑步和变向训练",
+            "运动专项训练"
+          ]
+        }
+      ],
+      "key_exercises": [
+        "踝 4 方向弹力带抗阻",
+        "提踵(单腿)",
+        "平衡板单腿站"
+      ],
+      "prevention": [
+        { "measure": "提踵训练", "detail": "强化小腿三头肌" },
+        { "measure": "踝关节 4 方向抗阻", "detail": "提高踝关节稳定性" },
+        { "measure": "平衡板训练", "detail": "改善本体感觉(最有效)" },
+        { "measure": "护踝", "detail": "高风险运动时使用(运动护踝,非弹力护踝)" }
+      ],
+      "when_to_see_doctor": [
+        "完全无法负重",
+        "骨压痛/畸形(可能骨折)",
+        "反复扭伤(>3 次/年,考虑本体感觉训练 + 评估手术)"
+      ],
+      "prognosis": "I 度 1-2 周 / II 度 4-6 周 / III 度 8-12 周",
+      "source_doc": "07_运动损伤/运动损伤预防与康复指南.md",
+      "ref_section": "二、常见软组织损伤 > 踝关节扭伤",
+      "tags": ["踝", "韧带", "最常见", "篮球", "足球", "跑步"]
+    },
+    {
+      "id": "rehab_acl_injury",
+      "name": "前交叉韧带(ACL)损伤",
+      "name_en": "Anterior Cruciate Ligament Injury",
+      "category": "急性",
+      "type": "韧带",
+      "body_part": "膝",
+      "high_risk_groups": [
+        "女性",
+        "篮球/足球/滑雪运动员"
+      ],
+      "symptoms": [
+        "运动中有\"砰\"的响声",
+        "膝盖立即肿胀(关节积血)",
+        "膝盖不稳定、打软腿"
+      ],
+      "causes": [
+        "急停变向",
+        "跳跃落地不稳(膝内扣)",
+        "直接外力撞击"
+      ],
+      "red_flags": [
+        "\"砰\"响 + 立即肿胀 = ACL 高度怀疑",
+        "无法继续运动"
+      ],
+      "rehab_phases": [
+        {
+          "phase": "术前康复",
+          "time_window": "术前 2~6 周",
+          "goal": "改善术后预后",
+          "interventions": [
+            "消肿(RICE/PEACE)",
+            "恢复全范围活动度",
+            "恢复股四头肌力量"
+          ]
+        },
+        {
+          "phase": "术后早期",
+          "time_window": "0~2 周",
+          "goal": "保护移植物",
+          "interventions": [
+            "完全伸直(避免伸直受限)",
+            "消肿",
+            "保护移植韧带(支具 + 拐杖)"
+          ]
+        },
+        {
+          "phase": "力量期",
+          "time_window": "2~12 周",
+          "goal": "恢复基础力量",
+          "interventions": [
+            "股四头肌渐进负重(闭链优先)",
+            "平衡训练"
+          ]
+        },
+        {
+          "phase": "进阶期",
+          "time_window": "3~6 个月",
+          "goal": "恢复运动能力",
+          "interventions": [
+            "跑步(直线 → 变向)",
+            "跳跃训练",
+            "敏捷性训练"
+          ]
+        },
+        {
+          "phase": "重返运动",
+          "time_window": "9~12 个月",
+          "goal": "通过专项测试",
+          "interventions": [
+            "等速肌力测试(双侧差异 < 10%)",
+            "跳跃测试(LSI > 90%)",
+            "专项动作评估"
+          ]
+        }
+      ],
+      "key_exercises": [
+        "靠墙静蹲",
+        "腿举",
+        "单腿平衡",
+        "落地稳定性训练"
+      ],
+      "prevention": [
+        "ACL 损伤预防训练计划(NMT/PEP):热身 + 神经肌肉训练",
+        "落地模式纠正(避免膝内扣)",
+        "核心 + 臀中肌力量",
+        "女性运动员重点干预"
+      ],
+      "when_to_see_doctor": [
+        "\"砰\"响 + 立即肿胀 → 立即就医(骨科/运动医学)",
+        "膝关节明显不稳定",
+        "无法负重"
+      ],
+      "prognosis": "保守治疗可恢复日常;重返运动通常需手术重建 + 9-12 月康复",
+      "source_doc": "07_运动损伤/运动损伤预防与康复指南.md",
+      "ref_section": "二、常见软组织损伤 > 膝关节损伤 > ACL",
+      "tags": ["膝", "韧带", "篮球", "足球", "滑雪", "女性高风险", "手术"]
+    },
+    {
+      "id": "rehab_patellofemoral_pain",
+      "name": "髌股关节疼痛综合征(跑步膝)",
+      "name_en": "Patellofemoral Pain Syndrome (PFPS)",
+      "category": "急性",
+      "type": "综合症",
+      "body_part": "膝",
+      "symptoms": [
+        "膝盖前侧疼痛(髌骨周围)",
+        "久坐后加重(电影院征)",
+        "上下楼、蹲起加重",
+        "下坡跑后明显"
+      ],
+      "causes": [
+        { "cause": "股四头肌力量不足", "strategy": "靠墙静蹲、腿举" },
+        { "cause": "臀中肌力量不足", "strategy": "侧向行走、蚌壳开合" },
+        { "cause": "髂胫束紧张", "strategy": "泡沫轴放松、拉伸" },
+        { "cause": "髋关节内旋", "strategy": "臀中肌训练" }
+      ],
+      "red_flags": [
+        "锁定/卡住(考虑半月板)",
+        "明显肿胀(考虑关节内病变)"
+      ],
+      "rehab_phases": [
+        {
+          "phase": "急性期",
+          "time_window": "0~2 周",
+          "goal": "止痛 + 调整负荷",
+          "interventions": [
+            "减少跑量/避免下坡",
+            "冰敷(运动后)",
+            "股四头肌等长收缩"
+          ]
+        },
+        {
+          "phase": "力量重建期",
+          "time_window": "2~8 周",
+          "goal": "股四 + 臀中肌强化",
+          "interventions": [
+            "靠墙静蹲(60-90 度)",
+            "单腿腿举",
+            "侧向行走(弹力带)",
+            "蚌壳开合"
+          ],
+          "dosage": "3×12-15,每周 3 次"
+        },
+        {
+          "phase": "重返跑步期",
+          "time_window": "8~12 周",
+          "goal": "渐进恢复跑步",
+          "interventions": [
+            "跑量递增 < 10%/周",
+            "避免下坡优先选平地/上坡"
+          ]
+        }
+      ],
+      "key_exercises": [
+        "靠墙静蹲",
+        "腿举",
+        "侧向行走(弹力带)",
+        "蚌壳开合",
+        "泡沫轴髂胫束"
+      ],
+      "prevention": [
+        "跑量递增 < 10%/周",
+        "跑前充分热身",
+        "每周 2 次下肢力量训练",
+        "选择合适跑鞋 + 替换周期"
+      ],
+      "when_to_see_doctor": [
+        "锁定/卡住",
+        "明显肿胀",
+        "疼痛 > 2 周无好转"
+      ],
+      "prognosis": "80% 患者经 6-12 周保守治疗显著改善",
+      "source_doc": "07_运动损伤/运动损伤预防与康复指南.md",
+      "ref_section": "二、常见软组织损伤 > 膝关节损伤 > 髌股关节疼痛综合征",
+      "tags": ["膝", "跑步膝", "跑步", "PFPS", "髌骨"]
+    },
+    {
+      "id": "rehab_rotator_cuff",
+      "name": "肩袖损伤",
+      "name_en": "Rotator Cuff Injury",
+      "category": "急性",
+      "type": "肌肉",
+      "body_part": "肩",
+      "anatomy": [
+        { "muscle": "冈上肌 Supraspinatus", "function": "肩外展起始(0~15 度)" },
+        { "muscle": "冈下肌 Infraspinatus", "function": "肩外旋" },
+        { "muscle": "小圆肌 Teres Minor", "function": "肩外旋" },
+        { "muscle": "肩胛下肌 Subscapularis", "function": "肩内旋" }
+      ],
+      "symptoms": [
+        "肩外侧/前侧疼痛",
+        "抬臂痛(60-120 度疼痛弧)",
+        "夜间痛(侧卧压痛)",
+        "力量下降(外旋/内旋)"
+      ],
+      "causes": [
+        "反复过头动作(游泳/投掷/网球)",
+        "肩峰下撞击",
+        "年龄退变(>40 岁常见)"
+      ],
+      "red_flags": [
+        "完全无法抬臂(可能全层撕裂)",
+        "明显无力(考虑大撕裂)"
+      ],
+      "rehab_phases": [
+        {
+          "phase": "止痛期",
+          "time_window": "0~2 周",
+          "goal": "控制炎症",
+          "interventions": [
+            "避免过头动作",
+            "冰敷",
+            "肩胛骨位置训练"
+          ]
+        },
+        {
+          "phase": "活动度恢复",
+          "time_window": "2~6 周",
+          "goal": "恢复无痛全范围",
+          "interventions": [
+            "被动活动度训练(棍棒辅助)",
+            "钟摆运动"
+          ]
+        },
+        {
+          "phase": "力量期",
+          "time_window": "6~12 周",
+          "goal": "重建肩袖力量",
+          "interventions": [
+            "弹力带外旋/内旋(手臂贴身体,肘关节 90 度)",
+            "3×15,每天 1~2 次"
+          ]
+        },
+        {
+          "phase": "功能恢复期",
+          "time_window": "12 周+",
+          "goal": "重返运动",
+          "interventions": [
+            "过头动作渐进(网球/游泳发球)",
+            "离心力量训练"
+          ]
+        }
+      ],
+      "key_exercises": [
+        "弹力带外旋",
+        "弹力带内旋",
+        "Face Pull",
+        "Y-T-W 举起(俯卧)",
+        "墙壁俯卧撑",
+        "推墙练习"
+      ],
+      "prevention": [
+        { "focus": "肩外旋肌群", "exercises": "弹力带外旋、Face Pull" },
+        { "focus": "下斜方肌", "exercises": "Y-T-W 举起(俯卧)" },
+        { "focus": "前锯肌", "exercises": "墙壁俯卧撑、推墙练习" }
+      ],
+      "when_to_see_doctor": [
+        "完全无法抬臂",
+        "夜间痛严重影响睡眠",
+        "保守治疗 6 周无改善"
+      ],
+      "prognosis": "大多数部分撕裂经 8-12 周保守治疗改善;全层大面积撕裂可能需手术",
+      "source_doc": "07_运动损伤/运动损伤预防与康复指南.md",
+      "ref_section": "二、常见软组织损伤 > 肩袖损伤",
+      "tags": ["肩", "肩袖", "游泳", "投掷", "网球", "过头动作"]
+    },
+    {
+      "id": "rehab_achilles_tendinopathy",
+      "name": "跟腱病(跟腱炎/腱病)",
+      "name_en": "Achilles Tendinopathy",
+      "category": "慢性",
+      "type": "肌腱",
+      "body_part": "小腿",
+      "symptoms": [
+        "跟骨上方跟腱处疼痛",
+        "晨起第一步疼痛(典型)",
+        "活动后缓解",
+        "长时间活动后加重"
+      ],
+      "causes": [
+        "过度使用(跑量突增)",
+        "小腿力量不足",
+        "柔韧性差",
+        "跑鞋过硬/更换不当"
+      ],
+      "red_flags": [
+        "跟腱处明显凹陷(怀疑断裂)",
+        "突发剧痛 + 跛行(断裂)"
+      ],
+      "rehab_phases": [
+        {
+          "phase": "负荷管理期",
+          "time_window": "0~2 周",
+          "goal": "控制疼痛",
+          "interventions": [
+            "减少跑量 50%",
+            "避免上坡/速度训练",
+            "冰敷(运动后)"
+          ]
+        },
+        {
+          "phase": "离心训练期",
+          "time_window": "2~12 周",
+          "goal": "重建跟腱结构",
+          "interventions": [
+            "提踵(踮脚):单腿站立,踮到最高点,然后非常缓慢地放下来(3~5 秒)",
+            "目标:离心下放时肌肉被拉长"
+          ],
+          "dosage": "3×15,每天 1~2 次",
+          "precautions": [
+            "疼痛 < 5/10 方可进行",
+            "可双膝微屈减轻负荷(Alfredson 协议变体)"
+          ]
+        },
+        {
+          "phase": "力量恢复期",
+          "time_window": "12~24 周",
+          "goal": "恢复运动能力",
+          "interventions": [
+            "重负荷提踵(增加重量)",
+            "能量储存训练(跳跃/跑步)"
+          ]
+        }
+      ],
+      "key_exercises": [
+        "提踵离心训练(单腿慢放 3-5 秒)"
+      ],
+      "prevention": [
+        "跑量递增 < 10%/周",
+        "小腿力量训练(提踵)",
+        "跑鞋选择 + 定期更换",
+        "训练后跟腱拉伸"
+      ],
+      "when_to_see_doctor": [
+        "跟腱处凹陷/断裂怀疑",
+        "疼痛持续 > 2 周保守治疗无改善",
+        "明显肿胀/红肿"
+      ],
+      "prognosis": "离心训练 12 周内 60-80% 患者显著改善;完全恢复常需 3-6 月",
+      "source_doc": "07_运动损伤/运动损伤预防与康复指南.md",
+      "ref_section": "三、慢性运动损伤 > 腱病 > 跟腱病",
+      "tags": ["小腿", "跟腱", "跑步", "离心训练", "金标准"]
+    },
+    {
+      "id": "rehab_itbs",
+      "name": "髂胫束摩擦综合征(跑步膝/ITBS)",
+      "name_en": "Iliotibial Band Syndrome",
+      "category": "慢性",
+      "type": "综合症",
+      "body_part": "膝",
+      "symptoms": [
+        "膝外侧疼痛(典型)",
+        "下坡跑/长跑后明显",
+        "膝关节屈曲 30 度时最痛"
+      ],
+      "causes": [
+        "跑量突增",
+        "下坡跑过多",
+        "臀中肌无力",
+        "髂胫束紧张"
+      ],
+      "red_flags": [
+        "膝外侧明显肿胀(排除其他病变)"
+      ],
+      "rehab_phases": [
+        {
+          "phase": "急性期",
+          "time_window": "0~2 周",
+          "goal": "止痛 + 减负荷",
+          "interventions": [
+            "减少跑量 50%",
+            "避免下坡",
+            "冰敷(运动后)"
+          ]
+        },
+        {
+          "phase": "康复期",
+          "time_window": "2~8 周",
+          "goal": "重建力量 + 髂胫束放松",
+          "interventions": [
+            "泡沫轴滚大腿外侧(重点在膝上 15~20cm)",
+            "臀中肌训练(侧向行走弹力带、蚌壳开合)",
+            "阔筋膜张肌放松(泡沫轴/花生球)"
+          ],
+          "dosage": "泡沫轴每侧 2-3 分钟,力量训练 3×15"
+        },
+        {
+          "phase": "回归期",
+          "time_window": "8~12 周",
+          "goal": "渐进恢复跑步",
+          "interventions": [
+            "跑量递增 < 10%/周",
+            "降低坡度优先",
+            "调整跑姿(避免过度内旋)"
+          ]
+        }
+      ],
+      "key_exercises": [
+        "泡沫轴髂胫束",
+        "侧向行走(弹力带)",
+        "蚌壳开合",
+        "阔筋膜张肌放松"
+      ],
+      "prevention": [
+        "跑量递增 < 10%/周",
+        "避免长期下坡跑",
+        "每周 2 次下肢力量 + 臀中肌",
+        "泡沫轴常规放松"
+      ],
+      "when_to_see_doctor": [
+        "膝外侧明显肿胀",
+        "保守治疗 4 周无改善"
+      ],
+      "prognosis": "经规范康复 6-8 周可恢复跑步;复发率较高,需长期力量 + 跑量管理",
+      "source_doc": "07_运动损伤/运动损伤预防与康复指南.md",
+      "ref_section": "三、慢性运动损伤 > 髂胫束摩擦综合征",
+      "tags": ["膝", "跑步", "ITBS", "髂胫束", "下坡"]
+    }
+  ]
+}
