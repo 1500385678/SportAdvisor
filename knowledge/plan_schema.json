@@ -1,0 +1,397 @@
+{
+  "version": "0.1.0",
+  "schema_version": "0.1",
+  "generated_at": "2026-08-27",
+  "source_root": "_SportLib/",
+  "sources": [
+    "08_训练计划/周期化训练与减脂增肌方案.md",
+    "02_力量训练/力量训练全指南.md",
+    "03_有氧运动/有氧运动完全指南.md"
+  ],
+  "purpose": "训练计划表 schema:5 层结构 plan → session → set_block → rep_set → load_entry,覆盖 4/8/12 周周期化训练,支持增肌/减脂/康复/有氧/混合 5 类目标。",
+  "schema": {
+    "id": "plan_<goal>_<weeks>w_<userId> · 计划唯一 id",
+    "name": "中文计划名,如 '4 周增肌入门'",
+    "goal": "增肌|减脂|力量|耐力|康复|混合",
+    "level": "beginner|intermediate|advanced",
+    "weeks": 4,
+    "sessions_per_week": 3,
+    "split": "fullbody|upper_lower|push_pull_legs|bro_split|自定",
+    "progression_model": "linear|double_progression|undulating|wave|conjugate",
+    "deload": {
+      "every_n_weeks": 4,
+      "intensity_drop_pct": 40,
+      "volume_drop_pct": 50
+    },
+    "tags": [
+      "检索标签"
+    ],
+    "source_doc": "来源 md 相对路径",
+    "ref_section": "在源 md 中所属章节",
+    "created_at": "ISO 时间",
+    "updated_at": "ISO 时间",
+    "owner": "模板作者/sport_advisor|user",
+    "session_ids": [
+      "本计划引用的 session id 列表(按周内顺序)"
+    ],
+    "sessions": [
+      {
+        "id": "sess_<planId>_w1d1 · 单次训练 id",
+        "plan_id": "所属 plan id",
+        "week_index": 1,
+        "day_index": 1,
+        "day_label": "周一 / Day A / 上肢日",
+        "focus": "本次训练主要目标:胸+三头|腿|全身|有氧|混合",
+        "estimated_minutes": 60,
+        "warmup_ids": [
+          "热身动作 id(来自 exercises.json)"
+        ],
+        "main_blocks": [
+          "主要训练 block,顺序即执行顺序"
+        ],
+        "cooldown_ids": [
+          "放松/拉伸动作 id"
+        ],
+        "notes": "教练提示,如 '复合动作先做,孤立后做'",
+        "intensity_target": "本次训练 RPE 目标 7-8 / 心率区间 Z2-Z3",
+        "set_blocks": [
+          {
+            "id": "block_<sessId>_<n> · 训练组块 id",
+            "session_id": "所属 session id",
+            "order": 1,
+            "block_type": "compound|isolation|accessory|superset|circuit|emom|amrap|interval",
+            "name": "胸推复合组",
+            "exercise_id": "ex_<category>_<short> · 引用 exercises.json",
+            "reps": {
+              "target_min": 8,
+              "target_max": 12,
+              "unit": "reps|sec|meters|calories",
+              "note": "如 '力竭组'"
+            },
+            "rep_sets": [
+              {
+                "id": "rs_<blockId>_<setNum> · 实际完成组记录",
+                "set_number": 1,
+                "rep_count": 10,
+                "load_kg": 60,
+                "load_pct_1rm": 70,
+                "rpe": 7,
+                "rest_sec": 90,
+                "tempo": "3-1-1-0 · 下放-停顿-推起-顶部",
+                "completed": false,
+                "actual_reps": null,
+                "actual_load": null,
+                "logged_at": null,
+                "note": "组内备注,如 '最后 2 次卡'"
+              }
+            ],
+            "set_count": 4,
+            "set_count_progression": "线性:每组一致 | 渐降:12/10/8/6 | 渐升:6/8/10/12",
+            "rest_sec_default": 90,
+            "rest_strategy": "固定 | RPE 依赖:不喘气再起 | 节拍器:60s",
+            "target_rpe_range": "7-8",
+            "failure_distance": 0,
+            "superset_with_block_id": null,
+            "drop_set": false,
+            "rest_pause": false,
+            "note": "教练提示,如 '前两组热身,后两组工作'"
+          }
+        ],
+        "load_summary": {
+          "total_volume_kg": 3840,
+          "primary_lift_volume_kg": 1920,
+          "accessory_volume_kg": 1920,
+          "intensity_avg_rpe": 7.5,
+          "intensity_avg_pct_1rm": 72
+        },
+        "completed_at": null,
+        "user_feedback": {
+          "difficulty": "easy|just_right|hard",
+          "enjoyment": 1,
+          "energy": 1,
+          "note": "训练后感受备注"
+        }
+      }
+    ],
+    "weekly_target": {
+      "total_volume_kg_min": 8000,
+      "total_volume_kg_max": 12000,
+      "primary_lift_count_min": 6,
+      "cardio_minutes_min": 60,
+      "rpe_avg_target": 7.5
+    },
+    "load_progression": {
+      "type": "double_progression",
+      "rule": "组数 × 次数都达到上限,下次加重 2.5-5kg(上肢)/5-10kg(下肢)",
+      "weekly_intensity_increment_pct": 2.5,
+      "every_n_weeks_deload": 4
+    },
+    "constraints": {
+      "max_session_minutes": 90,
+      "min_rest_between_sessions_hours": 24,
+      "max_intensity_increase_weekly_pct": 10,
+      "exclude_exercise_ids": [
+        "伤病禁忌动作 id"
+      ]
+    },
+    "load_entry": {
+      "id": "load_<userId>_<date> · 训练负荷记录",
+      "user_id": "用户 id",
+      "session_id": "关联 session id(可选,心率/RPE 独立记录也允许 null)",
+      "date": "YYYY-MM-DD",
+      "duration_min": 60,
+      "avg_heart_rate_bpm": 138,
+      "max_heart_rate_bpm": 168,
+      "hr_zone_distribution": {
+        "Z1": 5,
+        "Z2": 15,
+        "Z3": 30,
+        "Z4": 8,
+        "Z5": 2
+      },
+      "rpe_session_avg": 7.5,
+      "total_volume_kg": 3840,
+      "trimp": 85,
+      "acute_load_7d": 520,
+      "chronic_load_28d": 460,
+      "acwr": 1.13,
+      "overtraining_flag": false,
+      "source": "manual|apple_watch|garmin|coros|whoop|polar",
+      "logged_at": "ISO 时间",
+      "note": "主观感受备注"
+    },
+    "load_baseline": {
+      "user_id": "用户 id",
+      "age": 30,
+      "resting_hr_bpm": 62,
+      "max_hr_bpm": 188,
+      "hr_max_method": "实测|220-age|tanaka",
+      "lthr_bpm": 168,
+      "vo2max_ml_kg_min": 48,
+      "rpe_anchor": {
+        "5": "热身,可对话",
+        "6": "可说话但偏喘",
+        "7": "短句可讲",
+        "8": "只能讲 1-2 个词",
+        "9": "几乎无法讲话",
+        "10": "完全力竭"
+      },
+      "hr_zones": {
+        "Z1_recovery": "≤ 60% HRmax · 恢复/主动恢复",
+        "Z2_aerobic": "60-70% · 燃脂/有氧基础",
+        "Z3_tempo": "70-80% · 有氧进阶/马拉松配速",
+        "Z4_threshold": "80-90% · 乳酸阈/间歇",
+        "Z5_vo2max": "90-100% · VO2max/神经肌肉"
+      }
+    }
+  },
+  "stats": {
+    "schema_layers": 5,
+    "core_entities": [
+      "plan",
+      "session",
+      "set_block",
+      "rep_set",
+      "load_entry"
+    ],
+    "supported_goals": [
+      "增肌",
+      "减脂",
+      "力量",
+      "耐力",
+      "康复",
+      "混合"
+    ],
+    "supported_split_types": [
+      "fullbody",
+      "upper_lower",
+      "push_pull_legs",
+      "bro_split",
+      "自定"
+    ],
+    "supported_progression_models": [
+      "linear",
+      "double_progression",
+      "undulating",
+      "wave",
+      "conjugate"
+    ],
+    "linked_kb": [
+      "exercises.json(动作引用)",
+      "rehab_kb.json(伤病禁忌过滤)"
+    ]
+  },
+  "examples": [
+    {
+      "id": "plan_hypertrophy_4w_demo01",
+      "name": "4 周增肌入门(徒手+哑铃)",
+      "goal": "增肌",
+      "level": "beginner",
+      "weeks": 4,
+      "sessions_per_week": 3,
+      "split": "fullbody",
+      "progression_model": "double_progression",
+      "deload": {
+        "every_n_weeks": 4,
+        "intensity_drop_pct": 40,
+        "volume_drop_pct": 50
+      },
+      "tags": [
+        "增肌",
+        "入门",
+        "徒手",
+        "哑铃",
+        "4 周"
+      ],
+      "source_doc": "08_训练计划/周期化训练与减脂增肌方案.md",
+      "ref_section": "三、增肌 4 周周期化方案",
+      "created_at": "2026-08-27T03:10:00+08:00",
+      "updated_at": "2026-08-27T03:10:00+08:00",
+      "owner": "sport_advisor",
+      "sessions": [
+        {
+          "id": "sess_plan_hypertrophy_4w_demo01_w1d1",
+          "plan_id": "plan_hypertrophy_4w_demo01",
+          "week_index": 1,
+          "day_index": 1,
+          "day_label": "周一 / Day A / 全身推+腿",
+          "focus": "胸+三头+股四头",
+          "estimated_minutes": 60,
+          "warmup_ids": [
+            "ex_mobility_warmup_001",
+            "ex_warmup_dynamic_arm"
+          ],
+          "main_blocks": [],
+          "cooldown_ids": [
+            "ex_stretch_chest",
+            "ex_stretch_quad"
+          ],
+          "notes": "复合动作先做,孤立后做;组间休息严格 90s",
+          "intensity_target": "RPE 7-8 / 心率区间 Z2-Z3",
+          "set_blocks": [
+            {
+              "id": "block_w1d1_01",
+              "session_id": "sess_plan_hypertrophy_4w_demo01_w1d1",
+              "order": 1,
+              "block_type": "compound",
+              "name": "哑铃卧推",
+              "exercise_id": "ex_strength_push_db_bench_press",
+              "reps": {
+                "target_min": 8,
+                "target_max": 12,
+                "unit": "reps"
+              },
+              "rep_sets": [
+                {
+                  "id": "rs_w1d1_01_1",
+                  "set_number": 1,
+                  "rep_count": 10,
+                  "load_kg": 20,
+                  "load_pct_1rm": 60,
+                  "rpe": 6,
+                  "rest_sec": 90,
+                  "tempo": "3-1-1-0",
+                  "completed": false,
+                  "actual_reps": null,
+                  "actual_load": null,
+                  "logged_at": null,
+                  "note": "热身组"
+                },
+                {
+                  "id": "rs_w1d1_01_2",
+                  "set_number": 2,
+                  "rep_count": 10,
+                  "load_kg": 22.5,
+                  "load_pct_1rm": 65,
+                  "rpe": 7,
+                  "rest_sec": 90,
+                  "tempo": "3-1-1-0",
+                  "completed": false,
+                  "actual_reps": null,
+                  "actual_load": null,
+                  "logged_at": null,
+                  "note": null
+                },
+                {
+                  "id": "rs_w1d1_01_3",
+                  "set_number": 3,
+                  "rep_count": 10,
+                  "load_kg": 25,
+                  "load_pct_1rm": 70,
+                  "rpe": 8,
+                  "rest_sec": 90,
+                  "tempo": "3-1-1-0",
+                  "completed": false,
+                  "actual_reps": null,
+                  "actual_load": null,
+                  "logged_at": null,
+                  "note": null
+                },
+                {
+                  "id": "rs_w1d1_01_4",
+                  "set_number": 4,
+                  "rep_count": 10,
+                  "load_kg": 25,
+                  "load_pct_1rm": 70,
+                  "rpe": 8,
+                  "rest_sec": 90,
+                  "tempo": "3-1-1-0",
+                  "completed": false,
+                  "actual_reps": null,
+                  "actual_load": null,
+                  "logged_at": null,
+                  "note": "最后 1 次卡"
+                }
+              ],
+              "set_count": 4,
+              "set_count_progression": "前 2 周 3 组 → 第 3-4 周 4 组",
+              "rest_sec_default": 90,
+              "rest_strategy": "固定",
+              "target_rpe_range": "7-8",
+              "failure_distance": 1,
+              "superset_with_block_id": null,
+              "drop_set": false,
+              "rest_pause": false,
+              "note": "前 2 组热身,后 2 组工作"
+            }
+          ],
+          "load_summary": {
+            "total_volume_kg": 775,
+            "primary_lift_volume_kg": 775,
+            "accessory_volume_kg": 0,
+            "intensity_avg_rpe": 7.25,
+            "intensity_avg_pct_1rm": 66
+          },
+          "completed_at": null,
+          "user_feedback": null
+        }
+      ],
+      "weekly_target": {
+        "total_volume_kg_min": 2000,
+        "total_volume_kg_max": 3000,
+        "primary_lift_count_min": 6,
+        "cardio_minutes_min": 60,
+        "rpe_avg_target": 7.5
+      },
+      "load_progression": {
+        "type": "double_progression",
+        "rule": "3 组 × 12 次都达标 → 下次加重 2.5kg(上肢)/5kg(下肢)",
+        "weekly_intensity_increment_pct": 2.5,
+        "every_n_weeks_deload": 4
+      },
+      "constraints": {
+        "max_session_minutes": 75,
+        "min_rest_between_sessions_hours": 24,
+        "max_intensity_increase_weekly_pct": 10,
+        "exclude_exercise_ids": []
+      }
+    }
+  ],
+  "roadmap": {
+    "v0.1": "schema 草稿 + 1 个示例 4 周增肌计划(本文件)",
+    "v0.2": "增加 5 类目标各 1 个模板(增肌/减脂/力量/耐力/康复)",
+    "v0.3": "session 模板库(20+),支持 user_id 实例化",
+    "v1.0": "FastAPI 集成 /plan 端点,从 plan_schema.json 实例化 user_plan"
+  },
+  "next_step": "Phase 0 任务 5:SQLite → PostgreSQL + InfluxDB 迁移脚本(本 schema 落库结构对齐 plan / session / rep_set / load_entry 4 表)"
+}

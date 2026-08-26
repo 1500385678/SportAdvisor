@@ -1,6 +1,6 @@
 # SportAdvisor · 知识库索引
 
-> 自动化生成 · v1.2 · 2026-08-26
+> 自动化生成 · v1.3 · 2026-08-27
 > 数据源:`../_SportLib/01-10/`
 
 ## 用途
@@ -16,6 +16,7 @@
 | `_index.json` | 10 主题元数据(topic_id / name / path / file / lines / bytes / summary / status) | 1.0 | ready |
 | `exercises.json` | 训练动作库(name / 肌群 / 器械 / 难度 / 教学要点 / 错误 / 升降阶) | 0.1.0 | skeleton (49 条) |
 | `rehab_kb.json` | 伤病/康复库(PEACE&LOVE 原则 / 7 类伤病 / 分级 / 分期康复 / 预防) | 0.1.0 | skeleton (7 条) |
+| `plan_schema.json` | 训练计划表 schema(plan / session / set_block / rep_set / load_entry 5 层 + 1 个 4 周增肌示例) | 0.1.0 | draft |
 
 ## 当前状态
 - **主题数**:10 / 10 (全部 ready)
@@ -62,7 +63,7 @@
 - [x] **任务 1**:盘点 10 大主题,建索引 ← 2026-08-24
 - [x] **任务 2(部分)**:提取训练动作库 `exercises.json` ← 2026-08-25(骨架 v0.1.0,49 条入库;100+ 目标待 T2 任务扩展)
 - [x] **任务 3(部分)**:提取伤病/康复知识 `rehab_kb.json` ← 2026-08-26(骨架 v0.1.0,7 条伤病 + PEACE&LOVE 原则 + 警示信号 + 预防原则;扩展待 T3)
-- [ ] 任务 4:设计训练计划表 schema
+- [x] **任务 4**:设计训练计划表 schema ← 2026-08-27(`plan_schema.json` v0.1.0 / 5 层结构 / 1 个 4 周增肌示例;扩展待 T2 任务)
 - [ ] 任务 5:SQLite → PostgreSQL + InfluxDB 迁移脚本
 - [ ] 任务 6:心率/RPE 基线范围表
 
@@ -73,4 +74,16 @@
 - 从 07_运动损伤 抽取康复/预防动作
 - 从 08_训练计划 抽取周期化模板对应的代表动作
 
-或并行推进 **任务 4**:设计训练计划表 schema —— `plan / session / set / rep / weight`。
+或并行推进 **任务 5**:SQLite → PostgreSQL + InfluxDB 迁移脚本(对齐 `plan_schema.json` 的 plan / session / rep_set / load_entry 4 表)。
+
+## 计划表 schema(plan_schema.json)概览
+
+- **覆盖来源**:08_训练计划 / 02_力量训练 / 03_有氧运动
+- **schema 版本**:0.1
+- **结构**:5 层 — `plan` → `session` → `set_block` → `rep_set` → `load_entry`
+- **支持目标**:增肌 / 减脂 / 力量 / 耐力 / 康复 / 混合
+- **支持分化**:fullbody / upper_lower / push_pull_legs / bro_split / 自定
+- **支持渐进模型**:linear / double_progression / undulating / wave / conjugate
+- **示例**:1 个 4 周增肌入门计划(徒手+哑铃,3 练/周,Day A 全身推+腿,4 组哑铃卧推递进 20→25kg)
+- **关联库**:exercises.json(动作引用)/ rehab_kb.json(伤病禁忌过滤) / load_baseline(心率区间 + RPE 锚点)
+- **下一步**:Phase 0 任务 5 落库,4 表对齐 plan / session / rep_set / load_entry
