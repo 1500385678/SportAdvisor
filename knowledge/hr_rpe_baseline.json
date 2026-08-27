@@ -1,0 +1,156 @@
+{
+  "version": "0.1.0",
+  "schema_version": "0.1",
+  "generated_at": "2026-08-28",
+  "source_root": "_SportLib/",
+  "sources": [
+    "03_有氧运动/有氧运动完全指南.md",
+    "02_力量训练/力量训练全指南.md",
+    "08_训练计划/周期化训练与减脂增肌方案.md"
+  ],
+  "purpose": "心率(HR)与 RPE 主观用力等级基线范围表:覆盖 HRmax 公式、5 区心率分布(训练区间)、Borg CR10 / OMNI RPE 0-10 量表、不同人群(年龄 / 性别 / 训练水平)基线偏移,供 Phase 1 /load 端点与 plan_schema load_baseline 字段引用。",
+  "schema": {
+    "baseline_id": "hr_rpe_baseline_v0.1 · 基线版本 id",
+    "user_segment": "young_male|young_female|middle_male|middle_female|senior_male|senior_female|athlete_male|athlete_female|rehab|child",
+    "age_min": 18,
+    "age_max": 29,
+    "hr_max": {
+      "method": "tanaka|220-age|实测",
+      "formula": "HRmax = 208 - 0.7 × age (Tanaka 2001,推荐) | HRmax = 220 - age (经典估算法) | 实测:递增运动至力竭",
+      "default_value_bpm": 195
+    },
+    "hr_resting_default_bpm": 65,
+    "hrr_method": "Karvonen · HRtarget = HRrest + intensity × (HRmax - HRrest)",
+    "hr_zones_pct_hrmax": {
+      "Z1_recovery": {"min": 0, "max": 60, "purpose": "恢复 / 主动恢复 / 热身"},
+      "Z2_aerobic": {"min": 60, "max": 70, "purpose": "燃脂 / 有氧基础 / 长期脂肪氧化"},
+      "Z3_tempo": {"min": 70, "max": 80, "purpose": "有氧进阶 / 马拉松配速 / 提升有氧能力"},
+      "Z4_threshold": {"min": 80, "max": 90, "purpose": "乳酸阈 / 间歇训练 / 提升 FTP"},
+      "Z5_vo2max": {"min": 90, "max": 100, "purpose": "VO2max / 神经肌肉 / 短时极限"}
+    },
+    "rpe_scale": {
+      "type": "borg_cr10|OMNI_0_10|category_ratio",
+      "anchors": {
+        "0": "完全无用力",
+        "1": "非常轻微,可忽略",
+        "2": "轻微",
+        "3": "中等用力",
+        "4": "稍强",
+        "5": "强(热身级)",
+        "6": "较强",
+        "7": "非常强(短句可讲)",
+        "8": "极强(只能讲 1-2 词)",
+        "9": "几乎力竭(无法讲话)",
+        "10": "完全力竭"
+      },
+      "training_zone_mapping": {
+        "rpe_3-4": "Z1-Z2 恢复 / 技术训练",
+        "rpe_5-6": "Z2-Z3 有氧基础",
+        "rpe_7-8": "Z3-Z4 进阶有氧 / 力量工作集",
+        "rpe_9": "Z4-Z5 阈值 / 力量极限组",
+        "rpe_10": "Z5 神经肌肉极限(慎用)"
+      }
+    },
+    "rpe_to_hr_pct_hrmax_approx": {
+      "rpe_3": 55,
+      "rpe_4": 60,
+      "rpe_5": 65,
+      "rpe_6": 72,
+      "rpe_7": 78,
+      "rpe_8": 85,
+      "rpe_9": 92,
+      "rpe_10": 100
+    },
+    "safety_thresholds": {
+      "max_safe_hr_pct_hrmax": 95,
+      "rpe_red_line": 10,
+      "deload_trigger_rpe_avg": 8.5,
+      "overtraining_warning_signs": [
+        "静息心率连续 3 天升高 ≥ 5 bpm",
+        "同等负荷 RPE 持续上升 ≥ 1 级",
+        "睡眠质量下降 + 食欲下降",
+        "训练表现连续 2 周停滞或下降"
+      ]
+    },
+    "population_offsets": {
+      "young_male_18_29": {"hr_max_offset_bpm": 0, "rpe_baseline_shift": 0},
+      "young_female_18_29": {"hr_max_offset_bpm": -3, "rpe_baseline_shift": 0.5},
+      "middle_male_30_49": {"hr_max_offset_bpm": -5, "rpe_baseline_shift": 0},
+      "middle_female_30_49": {"hr_max_offset_bpm": -8, "rpe_baseline_shift": 0.5},
+      "senior_male_50_plus": {"hr_max_offset_bpm": -10, "rpe_baseline_shift": 0.5},
+      "senior_female_50_plus": {"hr_max_offset_bpm": -13, "rpe_baseline_shift": 1.0},
+      "athlete_male": {"hr_max_offset_bpm": 0, "rpe_baseline_shift": -0.5},
+      "athlete_female": {"hr_max_offset_bpm": -3, "rpe_baseline_shift": -0.5},
+      "rehab_return": {"hr_max_offset_bpm": -10, "rpe_baseline_shift": 1.0, "max_session_rpe": 6}
+    },
+    "source_doc": "来源 md 相对路径",
+    "ref_section": "在源 md 中所属章节",
+    "created_at": "ISO 时间",
+    "updated_at": "ISO 时间"
+  },
+  "examples": [
+    {
+      "example_id": "user_baseline_young_male_25",
+      "description": "示例 1:25 岁男性规律训练者,基于 Tanaka 公式推算基线",
+      "user_segment": "athlete_male",
+      "age": 25,
+      "resting_hr_bpm": 58,
+      "hr_max_bpm": 191,
+      "hr_max_method": "tanaka",
+      "hrr_bpm": 133,
+      "lthr_bpm": 172,
+      "vo2max_ml_kg_min": 52,
+      "zones_bpm": {
+        "Z1_recovery": "≤ 115",
+        "Z2_aerobic": "115-134",
+        "Z3_tempo": "134-153",
+        "Z4_threshold": "153-172",
+        "Z5_vo2max": "172-191"
+      },
+      "typical_session_rpe_target": "7-8",
+      "source_doc": "03_有氧运动/有氧运动完全指南.md",
+      "ref_section": "心率区间与训练强度",
+      "created_at": "2026-08-28T03:10:00+08:00"
+    },
+    {
+      "example_id": "user_baseline_middle_female_42",
+      "description": "示例 2:42 岁女性,中等训练水平,以减脂为目标",
+      "user_segment": "middle_female",
+      "age": 42,
+      "resting_hr_bpm": 68,
+      "hr_max_bpm": 179,
+      "hr_max_method": "tanaka",
+      "hrr_bpm": 111,
+      "lthr_bpm": 161,
+      "vo2max_ml_kg_min": 38,
+      "zones_bpm": {
+        "Z1_recovery": "≤ 107",
+        "Z2_aerobic": "107-125",
+        "Z3_tempo": "125-143",
+        "Z4_threshold": "143-161",
+        "Z5_vo2max": "161-179"
+      },
+      "typical_session_rpe_target": "5-7",
+      "fat_burn_zone_bpm": "107-125 (Z2)",
+      "source_doc": "03_有氧运动/有氧运动完全指南.md",
+      "ref_section": "减脂心率区间",
+      "created_at": "2026-08-28T03:10:00+08:00"
+    }
+  ],
+  "stats": {
+    "hr_max_formulas": 3,
+    "hr_zones": 5,
+    "rpe_anchors": 11,
+    "rpe_hr_approx_levels": 8,
+    "population_segments": 9,
+    "safety_thresholds": 4,
+    "examples": 2
+  },
+  "roadmap": {
+    "v0.1": "骨架:公式 / 5 区 / RPE 量表 / 9 类人群偏移 / 2 个示例 baseline(本文件,2026-08-28)",
+    "v0.2": "扩展人群分段(青少年 / 孕期 / 慢病 / 老年康复),增加 OMNI 0-10 性别区分量表",
+    "v0.3": "与 plan_schema.json load_baseline 字段对齐,供 FastAPI /load 端点实例化 user_hr_zone",
+    "v1.0": "实测算 HRmax 测试协议(递增运动至力竭)+ 可穿戴(Apple Watch / Garmin)导入 HRV/RHR 自动校正"
+  },
+  "next_step": "Phase 0 任务 5:SQLite → PostgreSQL + InfluxDB 迁移脚本(本表 user_baseline 落库结构对齐 1 表:user_baseline(HRmax / RHR / LTHR / zones_json / segment / updated_at))"
+}

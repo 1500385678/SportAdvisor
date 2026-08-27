@@ -1,6 +1,6 @@
 # SportAdvisor · 知识库索引
 
-> 自动化生成 · v1.3 · 2026-08-27
+> 自动化生成 · v1.4 · 2026-08-28
 > 数据源:`../_SportLib/01-10/`
 
 ## 用途
@@ -8,6 +8,7 @@
 - Phase 0 / 任务 2:动作库 `exercises.json` 抽取
 - Phase 0 / 任务 3:康复库 `rehab_kb.json` 抽取
 - Phase 0 / 任务 4:训练计划表 schema 设计
+- Phase 0 / 任务 6:心率/RPE 基线范围表
 - LLM 知识检索(RAG 召回单元)
 
 ## 文件
@@ -17,6 +18,7 @@
 | `exercises.json` | 训练动作库(name / 肌群 / 器械 / 难度 / 教学要点 / 错误 / 升降阶) | 0.1.0 | skeleton (49 条) |
 | `rehab_kb.json` | 伤病/康复库(PEACE&LOVE 原则 / 7 类伤病 / 分级 / 分期康复 / 预防) | 0.1.0 | skeleton (7 条) |
 | `plan_schema.json` | 训练计划表 schema(plan / session / set_block / rep_set / load_entry 5 层 + 1 个 4 周增肌示例) | 0.1.0 | draft |
+| `hr_rpe_baseline.json` | 心率/RPE 基线(HRmax 3 公式 / 5 区分布 / Borg CR10 / 9 类人群偏移 / 2 个示例 baseline) | 0.1.0 | skeleton |
 
 ## 当前状态
 - **主题数**:10 / 10 (全部 ready)
