@@ -44,7 +44,7 @@
 | `001_init_schema.sql` | PostgreSQL 5 表 DDL + 索引 + 触发器 | ✅ v0.1.0 |
 | `influx/line_protocol_example.lp` | InfluxDB Line Protocol 样本(训练负荷) | ✅ v0.1.0 |
 | `README.md` | 本文档 | ✅ v0.1.0 |
-| `002_seed_demo_data.sql` | plan_schema.json 示例(plan_hypertrophy_4w_demo01)入库脚本 | 📋 Phase 1 |
+| `002_seed_demo_data.sql` | plan_schema.json 示例(plan_hypertrophy_4w_demo01)入库脚本(1 plan + 1 session + 1 block + 4 rep_sets) | ✅ v0.1.0 |
 | `003_*.sql` | 其他 seed(增肌/减脂/力量/耐力/康复 5 模板) | 📋 Phase 1 |
 
 ---
@@ -123,6 +123,7 @@ influx query 'from(bucket:"sport_metrics") |> range(start:-1h) |> limit(n:5)'
 - [x] `plans.updated_at` 触发器自动维护
 - [x] InfluxDB Line Protocol 样本覆盖训练负荷主路径(热身/工作/组间休息)
 - [x] README 解释双轨设计 + 软外键决策
+- [x] **002_seed_demo_data.sql** 就位 — 1 plan + 1 session + 1 block + 4 rep_sets 可一键 INSERT,含 4 条验收 SQL(计数/JOIN/main_blocks JSONB/容量核对,容量口径差异已标注待 T3 决策)
 - [ ] Phase 1 接入 FastAPI 后,端到端写入 1 个示例计划(plan_hypertrophy_4w_demo01)→ 4 张表完整落库
 - [ ] Phase 1 接入 FastAPI 后,可穿戴模拟器推 1 小时心率 → InfluxDB + `load_entries` 双写一致
 - [ ] ACWR Flux 查询在 200ms 内返回(< 1 年数据量)
