@@ -1,6 +1,6 @@
 # SportAdvisor · 知识库索引
 
-> 自动化生成 · v1.4 · 2026-08-28
+> 自动化生成 · v1.5 · 2026-09-01
 > 数据源:`../_SportLib/01-10/`
 
 ## 用途
@@ -17,7 +17,7 @@
 | `_index.json` | 10 主题元数据(topic_id / name / path / file / lines / bytes / summary / status) | 1.0 | ready |
 | `exercises.json` | 训练动作库(name / 肌群 / 器械 / 难度 / 教学要点 / 错误 / 升降阶) | 0.1.0 | skeleton (49 条) |
 | `rehab_kb.json` | 伤病/康复库(PEACE&LOVE 原则 / 7 类伤病 / 分级 / 分期康复 / 预防) | 0.1.0 | skeleton (7 条) |
-| `plan_schema.json` | 训练计划表 schema(plan / session / set_block / rep_set / load_entry 5 层 + 1 个 4 周增肌示例) | 0.1.0 | draft |
+| `plan_schema.json` | 训练计划表 schema(plan / session / set_block / rep_set / load_entry 5 层 + volume_policy 容量规则 + 1 个 4 周增肌示例) | 0.2.0 | draft+volume_policy |
 | `hr_rpe_baseline.json` | 心率/RPE 基线(HRmax 3 公式 / 5 区分布 / Borg CR10 / 9 类人群偏移 / 2 个示例 baseline) | 0.1.0 | skeleton |
 
 ## 当前状态
@@ -66,6 +66,7 @@
 - [x] **任务 2(部分)**:提取训练动作库 `exercises.json` ← 2026-08-25(骨架 v0.1.0,49 条入库;100+ 目标待 T2 任务扩展)
 - [x] **任务 3(部分)**:提取伤病/康复知识 `rehab_kb.json` ← 2026-08-26(骨架 v0.1.0,7 条伤病 + PEACE&LOVE 原则 + 警示信号 + 预防原则;扩展待 T3)
 - [x] **任务 4**:设计训练计划表 schema ← 2026-08-27(`plan_schema.json` v0.1.0 / 5 层结构 / 1 个 4 周增肌示例;扩展待 T2 任务)
+- [x] **任务 4 增量**:统一容量口径 ← 2026-09-01(`plan_schema.json` v0.2.0 / 新增 `volume_policy` 字段:`counting_basis` / `warmup_policy` / `primary_split_method` / `primary_vs_accessory_ratio` / `weekly_volume_targets_per_muscle_group` / `intensity_floor_pct_1rm` / `rpe_floor`,解决 0831 增量中提到的 capacity 计算口径差异;示例 plan 已落地 4 子字段)
 - [ ] 任务 5:SQLite → PostgreSQL + InfluxDB 迁移脚本
 - [ ] 任务 6:心率/RPE 基线范围表
 
@@ -81,11 +82,13 @@
 ## 计划表 schema(plan_schema.json)概览
 
 - **覆盖来源**:08_训练计划 / 02_力量训练 / 03_有氧运动
-- **schema 版本**:0.1
+- **schema 版本**:0.2(v0.2.0 / 2026-09-01)
 - **结构**:5 层 — `plan` → `session` → `set_block` → `rep_set` → `load_entry`
+- **plan 顶层规则**(5 个):`deload` / `weekly_target` / `load_progression` / `constraints` / `volume_policy`(v0.2 新增)
+- **volume_policy 7 字段**:counting_basis / warmup_policy / primary_split_method / primary_vs_accessory_ratio / weekly_volume_targets_per_muscle_group / intensity_floor_pct_1rm / rpe_floor —— 统一"组怎么数、热身算不算、主辅怎么分、每肌群做多少组"
 - **支持目标**:增肌 / 减脂 / 力量 / 耐力 / 康复 / 混合
 - **支持分化**:fullbody / upper_lower / push_pull_legs / bro_split / 自定
 - **支持渐进模型**:linear / double_progression / undulating / wave / conjugate
-- **示例**:1 个 4 周增肌入门计划(徒手+哑铃,3 练/周,Day A 全身推+腿,4 组哑铃卧推递进 20→25kg)
-- **关联库**:exercises.json(动作引用)/ rehab_kb.json(伤病禁忌过滤) / load_baseline(心率区间 + RPE 锚点)
-- **下一步**:Phase 0 任务 5 落库,4 表对齐 plan / session / rep_set / load_entry
+- **示例**:1 个 4 周增肌入门计划(徒手+哑铃,3 练/周,Day A 全身推+腿,4 组哑铃卧推递进 20→25kg) — 已落地 volume_policy(counting_basis=working_sets_only / warmup=exclude_with_separate_log / primary_split=movement_pattern / 60_40)
+- **关联库**:exercises.json(动作引用)/ rehab_kb.json(伤病禁忌过滤) / load_baseline(心率区间 + RPE 锚点) / hr_rpe_baseline.json
+- **下一步**:Phase 0 任务 5 落库(002_seed_demo_data.sql 0831 已就位)→ FastAPI /plan 端点对接,volume_policy 容量校验在 API 层兜底

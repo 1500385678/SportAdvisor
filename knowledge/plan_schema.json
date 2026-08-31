@@ -1,14 +1,26 @@
 {
-  "version": "0.1.0",
-  "schema_version": "0.1",
-  "generated_at": "2026-08-27",
+  "version": "0.2.0",
+  "schema_version": "0.2",
+  "generated_at": "2026-09-01",
   "source_root": "_SportLib/",
   "sources": [
     "08_训练计划/周期化训练与减脂增肌方案.md",
     "02_力量训练/力量训练全指南.md",
     "03_有氧运动/有氧运动完全指南.md"
   ],
-  "purpose": "训练计划表 schema:5 层结构 plan → session → set_block → rep_set → load_entry,覆盖 4/8/12 周周期化训练,支持增肌/减脂/康复/有氧/混合 5 类目标。",
+  "changelog": [
+    {
+      "version": "0.1.0",
+      "date": "2026-08-27",
+      "summary": "schema 草稿 + 1 个 4 周增肌示例"
+    },
+    {
+      "version": "0.2.0",
+      "date": "2026-09-01",
+      "summary": "新增 volume_policy 字段统一容量口径(counting_basis / warmup_policy / primary_split / per_muscle_targets),示例 plan 落地 4 个子字段"
+    }
+  ],
+  "purpose": "训练计划表 schema:5 层结构 plan → session → set_block → rep_set → load_entry,覆盖 4/8/12 周周期化训练,支持增肌/减脂/康复/有氧/混合 5 类目标。v0.2 起 plan 必填 volume_policy,统一容量口径。",
   "schema": {
     "id": "plan_<goal>_<weeks>w_<userId> · 计划唯一 id",
     "name": "中文计划名,如 '4 周增肌入门'",
@@ -34,6 +46,34 @@
     "session_ids": [
       "本计划引用的 session id 列表(按周内顺序)"
     ],
+    "volume_policy": {
+      "_doc": "统一容量口径(v0.2 新增):明确'组'怎么数、'热身组算不算'、'主项/辅项怎么分',解决 0831 增量中提到的 capacity 计算口径差异。",
+      "counting_basis": "working_sets_only",
+      "counting_basis_enum_doc": "working_sets_only=仅工作组(力竭组 + 目标 RPE 组)计入容量 | all_sets=所有组(含热身) | working_sets_plus_warmup=工作组+热身组(热身组单列权重 0.5)",
+      "warmup_policy": "exclude_with_separate_log",
+      "warmup_policy_enum_doc": "exclude=不计入 | exclude_with_separate_log=不计入但单独记录热身组数 | include=计入容量(不推荐)",
+      "primary_split_method": "movement_pattern",
+      "primary_split_method_enum_doc": "movement_pattern=按动作模式(推/拉/髋铰链/蹲/负重行走)分 | muscle_group=按目标肌群(胸/背/腿/肩/臂)分 | exercise_id_list=显式列出主项 exercise_id(自定义)",
+      "primary_vs_accessory_ratio": "60_40",
+      "primary_vs_accessory_ratio_enum_doc": "50_50 | 60_40 | 70_30 | auto=按 goal 自动适配(增肌 60/40、力量 70/30、康复 50/50)",
+      "weekly_volume_targets_per_muscle_group": {
+        "_doc": "按肌群给周容量目标(单位:working sets/week),基于 Mike Israetel 推荐的 MV/MAV 区间下限。key = 肌群中文名,value = [min, max]。",
+        "胸": [10, 20],
+        "背": [10, 20],
+        "股四头": [8, 16],
+        "腘绳": [6, 14],
+        "臀": [6, 14],
+        "三角肌": [8, 16],
+        "三头": [6, 12],
+        "二头": [6, 12],
+        "核心": [6, 12],
+        "小腿": [6, 12]
+      },
+      "intensity_floor_pct_1rm": 50,
+      "intensity_floor_pct_1rm_doc": "低于此 1RM 百分比的组不计入容量(过滤掉轻重量激活组);默认 50%",
+      "rpe_floor": 5,
+      "rpe_floor_doc": "低于此 RPE 的组不计入容量;默认 5(过滤掉纯热身)"
+    },
     "sessions": [
       {
         "id": "sess_<planId>_w1d1 · 单次训练 id",
@@ -194,6 +234,22 @@
       "rep_set",
       "load_entry"
     ],
+    "plan_level_rules": [
+      "deload",
+      "weekly_target",
+      "load_progression",
+      "constraints",
+      "volume_policy"
+    ],
+    "volume_policy_fields": [
+      "counting_basis",
+      "warmup_policy",
+      "primary_split_method",
+      "primary_vs_accessory_ratio",
+      "weekly_volume_targets_per_muscle_group",
+      "intensity_floor_pct_1rm",
+      "rpe_floor"
+    ],
     "supported_goals": [
       "增肌",
       "减脂",
@@ -218,7 +274,8 @@
     ],
     "linked_kb": [
       "exercises.json(动作引用)",
-      "rehab_kb.json(伤病禁忌过滤)"
+      "rehab_kb.json(伤病禁忌过滤)",
+      "hr_rpe_baseline.json(心率区间 + RPE 锚点)"
     ]
   },
   "examples": [
@@ -243,6 +300,22 @@
         "哑铃",
         "4 周"
       ],
+      "volume_policy": {
+        "counting_basis": "working_sets_only",
+        "warmup_policy": "exclude_with_separate_log",
+        "primary_split_method": "movement_pattern",
+        "primary_vs_accessory_ratio": "60_40",
+        "weekly_volume_targets_per_muscle_group": {
+          "胸": [10, 20],
+          "背": [10, 20],
+          "股四头": [8, 16],
+          "三角肌": [8, 16],
+          "三头": [6, 12],
+          "核心": [6, 12]
+        },
+        "intensity_floor_pct_1rm": 50,
+        "rpe_floor": 5
+      },
       "source_doc": "08_训练计划/周期化训练与减脂增肌方案.md",
       "ref_section": "三、增肌 4 周周期化方案",
       "created_at": "2026-08-27T03:10:00+08:00",
@@ -388,10 +461,11 @@
     }
   ],
   "roadmap": {
-    "v0.1": "schema 草稿 + 1 个示例 4 周增肌计划(本文件)",
-    "v0.2": "增加 5 类目标各 1 个模板(增肌/减脂/力量/耐力/康复)",
-    "v0.3": "session 模板库(20+),支持 user_id 实例化",
+    "v0.1": "schema 草稿 + 1 个示例 4 周增肌计划 ✓ 2026-08-27",
+    "v0.2": "新增 volume_policy 字段统一容量口径 ✓ 2026-09-01",
+    "v0.3": "增加 5 类目标各 1 个模板(增肌/减脂/力量/耐力/康复),各 plan 都必须填写 volume_policy",
+    "v0.4": "session 模板库(20+),支持 user_id 实例化",
     "v1.0": "FastAPI 集成 /plan 端点,从 plan_schema.json 实例化 user_plan"
   },
-  "next_step": "Phase 0 任务 5:SQLite → PostgreSQL + InfluxDB 迁移脚本(本 schema 落库结构对齐 plan / session / rep_set / load_entry 4 表)"
+  "next_step": "Phase 0 任务 5:migrations/002_seed_demo_data.sql 已就位(0831 增量),后续对接 FastAPI /plan 端点(v1.0)。volume_policy 容量校验在 FastAPI 层做后端兜底。"
 }
