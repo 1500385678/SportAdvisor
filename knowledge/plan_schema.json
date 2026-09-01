@@ -1,7 +1,7 @@
 {
-  "version": "0.2.0",
-  "schema_version": "0.2",
-  "generated_at": "2026-09-01",
+  "version": "0.3.0",
+  "schema_version": "0.3",
+  "generated_at": "2026-09-02",
   "source_root": "_SportLib/",
   "sources": [
     "08_训练计划/周期化训练与减脂增肌方案.md",
@@ -18,9 +18,14 @@
       "version": "0.2.0",
       "date": "2026-09-01",
       "summary": "新增 volume_policy 字段统一容量口径(counting_basis / warmup_policy / primary_split / per_muscle_targets),示例 plan 落地 4 个子字段"
+    },
+    {
+      "version": "0.3.0",
+      "date": "2026-09-02",
+      "summary": "新增 1 个 4 周减脂模板(plan_fatloss_4w_demo01),力量+有氧双轨,4 练/周,落地完整 7 字段 volume_policy;roadmap v0.3 第 2/5 个目标完成(2/5 = 增肌 + 减脂)"
     }
   ],
-  "purpose": "训练计划表 schema:5 层结构 plan → session → set_block → rep_set → load_entry,覆盖 4/8/12 周周期化训练,支持增肌/减脂/康复/有氧/混合 5 类目标。v0.2 起 plan 必填 volume_policy,统一容量口径。",
+  "purpose": "训练计划表 schema:5 层结构 plan → session → set_block → rep_set → load_entry,覆盖 4/8/12 周周期化训练,支持增肌/减脂/康复/有氧/混合 5 类目标。v0.2 起 plan 必填 volume_policy,统一容量口径;v0.3 起每个目标至少 1 个模板入库,roadmap 推进 2/5(增肌+减脂)。",
   "schema": {
     "id": "plan_<goal>_<weeks>w_<userId> · 计划唯一 id",
     "name": "中文计划名,如 '4 周增肌入门'",
@@ -458,14 +463,192 @@
         "max_intensity_increase_weekly_pct": 10,
         "exclude_exercise_ids": []
       }
+    },
+    {
+      "id": "plan_fatloss_4w_demo01",
+      "name": "4 周减脂塑形(力量+有氧双轨)",
+      "goal": "减脂",
+      "level": "beginner",
+      "weeks": 4,
+      "sessions_per_week": 4,
+      "split": "upper_lower",
+      "progression_model": "undulating",
+      "deload": {
+        "every_n_weeks": 4,
+        "intensity_drop_pct": 30,
+        "volume_drop_pct": 40
+      },
+      "tags": [
+        "减脂",
+        "塑形",
+        "入门",
+        "徒手",
+        "有氧",
+        "4 周"
+      ],
+      "volume_policy": {
+        "counting_basis": "working_sets_only",
+        "warmup_policy": "exclude_with_separate_log",
+        "primary_split_method": "movement_pattern",
+        "primary_vs_accessory_ratio": "50_50",
+        "weekly_volume_targets_per_muscle_group": {
+          "胸": [8, 14],
+          "背": [8, 14],
+          "股四头": [6, 12],
+          "腘绳": [6, 10],
+          "臀": [6, 12],
+          "三角肌": [6, 12],
+          "三头": [4, 10],
+          "二头": [4, 10],
+          "核心": [8, 16],
+          "小腿": [4, 8]
+        },
+        "intensity_floor_pct_1rm": 50,
+        "rpe_floor": 5
+      },
+      "source_doc": "08_训练计划/周期化训练与减脂增肌方案.md",
+      "ref_section": "四、减脂 4 周周期化方案(力量 + 有氧双轨)",
+      "created_at": "2026-09-02T03:10:00+08:00",
+      "updated_at": "2026-09-02T03:10:00+08:00",
+      "owner": "sport_advisor",
+      "sessions": [
+        {
+          "id": "sess_plan_fatloss_4w_demo01_w1d1",
+          "plan_id": "plan_fatloss_4w_demo01",
+          "week_index": 1,
+          "day_index": 1,
+          "day_label": "周一 / Day 1 / 上肢力量 + 核心",
+          "focus": "胸+背+三头+二头+核心",
+          "estimated_minutes": 55,
+          "warmup_ids": [
+            "ex_mobility_warmup_001",
+            "ex_warmup_dynamic_arm"
+          ],
+          "main_blocks": [],
+          "cooldown_ids": [
+            "ex_stretch_chest",
+            "ex_stretch_back"
+          ],
+          "notes": "复合动作先做、孤立后做;组间休息 60s 偏短促以提高代谢;力量后接 15min 中低强度有氧(Z2)",
+          "intensity_target": "力量 RPE 7 / 有氧 Z2 心率(参考 hr_rpe_baseline.json)",
+          "set_blocks": [
+            {
+              "id": "block_fatloss_w1d1_01",
+              "session_id": "sess_plan_fatloss_4w_demo01_w1d1",
+              "order": 1,
+              "block_type": "compound",
+              "name": "俯卧撑",
+              "exercise_id": "ex_strength_push_pushup",
+              "reps": {
+                "target_min": 10,
+                "target_max": 15,
+                "unit": "reps"
+              },
+              "rep_sets": [
+                {
+                  "id": "rs_fatloss_w1d1_01_1",
+                  "set_number": 1,
+                  "rep_count": 12,
+                  "load_kg": 0,
+                  "load_pct_1rm": null,
+                  "rpe": 6,
+                  "rest_sec": 60,
+                  "tempo": "2-1-1-0",
+                  "completed": false,
+                  "actual_reps": null,
+                  "actual_load": null,
+                  "logged_at": null,
+                  "note": "热身组"
+                },
+                {
+                  "id": "rs_fatloss_w1d1_01_2",
+                  "set_number": 2,
+                  "rep_count": 12,
+                  "load_kg": 0,
+                  "load_pct_1rm": null,
+                  "rpe": 7,
+                  "rest_sec": 60,
+                  "tempo": "2-1-1-0",
+                  "completed": false,
+                  "actual_reps": null,
+                  "actual_load": null,
+                  "logged_at": null,
+                  "note": null
+                },
+                {
+                  "id": "rs_fatloss_w1d1_01_3",
+                  "set_number": 3,
+                  "rep_count": 12,
+                  "load_kg": 0,
+                  "load_pct_1rm": null,
+                  "rpe": 7,
+                  "rest_sec": 60,
+                  "tempo": "2-1-1-0",
+                  "completed": false,
+                  "actual_reps": null,
+                  "actual_load": null,
+                  "logged_at": null,
+                  "note": null
+                }
+              ],
+              "set_count": 3,
+              "set_count_progression": "第 1-2 周 3 组 → 第 3-4 周 4 组",
+              "rest_sec_default": 60,
+              "rest_strategy": "固定",
+              "target_rpe_range": "7",
+              "failure_distance": 2,
+              "superset_with_block_id": null,
+              "drop_set": false,
+              "rest_pause": false,
+              "note": "徒手动作,自重计容量;加难改跪姿/钻石/下斜"
+            }
+          ],
+          "load_summary": {
+            "total_volume_kg": 0,
+            "primary_lift_volume_kg": 0,
+            "accessory_volume_kg": 0,
+            "intensity_avg_rpe": 6.7,
+            "intensity_avg_pct_1rm": null
+          },
+          "cardio_summary": {
+            "type": "快走/慢跑",
+            "duration_min": 15,
+            "hr_zone": "Z2",
+            "rpe_target": 4
+          },
+          "completed_at": null,
+          "user_feedback": null
+        }
+      ],
+      "weekly_target": {
+        "total_volume_kg_min": 0,
+        "total_volume_kg_max": 0,
+        "primary_lift_count_min": 8,
+        "cardio_minutes_min": 120,
+        "rpe_avg_target": 7.0,
+        "weekly_energy_expenditure_kcal_min": 2000
+      },
+      "load_progression": {
+        "type": "undulating",
+        "rule": "周一/周三 力量 RPE 7(中等负荷),周二/周四 HIIT 20min;容量不变,周内强度波动",
+        "weekly_intensity_increment_pct": 0,
+        "every_n_weeks_deload": 4
+      },
+      "constraints": {
+        "max_session_minutes": 60,
+        "min_rest_between_sessions_hours": 24,
+        "max_intensity_increase_weekly_pct": 5,
+        "exclude_exercise_ids": [],
+        "required_cardio_per_week_min": 90
+      }
     }
   ],
   "roadmap": {
     "v0.1": "schema 草稿 + 1 个示例 4 周增肌计划 ✓ 2026-08-27",
     "v0.2": "新增 volume_policy 字段统一容量口径 ✓ 2026-09-01",
-    "v0.3": "增加 5 类目标各 1 个模板(增肌/减脂/力量/耐力/康复),各 plan 都必须填写 volume_policy",
+    "v0.3": "增加 5 类目标各 1 个模板(增肌/减脂/力量/耐力/康复),各 plan 都必须填写 volume_policy(进行中:2/5 = 增肌+减脂,2026-09-02 落地减脂)",
     "v0.4": "session 模板库(20+),支持 user_id 实例化",
     "v1.0": "FastAPI 集成 /plan 端点,从 plan_schema.json 实例化 user_plan"
   },
-  "next_step": "Phase 0 任务 5:migrations/002_seed_demo_data.sql 已就位(0831 增量),后续对接 FastAPI /plan 端点(v1.0)。volume_policy 容量校验在 FastAPI 层做后端兜底。"
+  "next_step": "v0.3 余下 3 类模板(力量 / 耐力 / 康复)由 T3 后续推进;migrations/002_seed_demo_data.sql 已就位(0831 增量);volume_policy 容量校验在 FastAPI 层做后端兜底(v1.0)。"
 }
