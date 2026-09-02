@@ -1,5 +1,5 @@
 {
-  "version": "0.3.0",
+  "version": "0.4.0",
   "schema_version": "0.3",
   "generated_at": "2026-09-02",
   "source_root": "_SportLib/",
@@ -23,6 +23,11 @@
       "version": "0.3.0",
       "date": "2026-09-02",
       "summary": "新增 1 个 4 周减脂模板(plan_fatloss_4w_demo01),力量+有氧双轨,4 练/周,落地完整 7 字段 volume_policy;roadmap v0.3 第 2/5 个目标完成(2/5 = 增肌 + 减脂)"
+    },
+    {
+      "version": "0.4.0",
+      "date": "2026-09-03",
+      "summary": "新增 1 个 4 周纯力量模板(plan_strength_4w_demo01),PPL 3 练/周,大复合为锚(深蹲/卧推/硬拉/划船/推举),强度 75-90% 1RM,70/30 主辅比,容量 8-12 working sets/肌群/周;roadmap v0.3 第 3/5 个目标完成(3/5 = 增肌+减脂+力量);典型 day 展示 PUSH 日 3 个 set_block(卧推/推举/臂屈伸),完整 weekly_target + load_progression + constraints 元数据;mock exercise_id 风格与 fatloss 对齐,Phase 1 接入 FastAPI 时统一与 exercises.json 实际 id 对齐(v1.0)"
     }
   ],
   "purpose": "训练计划表 schema:5 层结构 plan → session → set_block → rep_set → load_entry,覆盖 4/8/12 周周期化训练,支持增肌/减脂/康复/有氧/混合 5 类目标。v0.2 起 plan 必填 volume_policy,统一容量口径;v0.3 起每个目标至少 1 个模板入库,roadmap 推进 2/5(增肌+减脂)。",
@@ -63,16 +68,46 @@
       "primary_vs_accessory_ratio_enum_doc": "50_50 | 60_40 | 70_30 | auto=按 goal 自动适配(增肌 60/40、力量 70/30、康复 50/50)",
       "weekly_volume_targets_per_muscle_group": {
         "_doc": "按肌群给周容量目标(单位:working sets/week),基于 Mike Israetel 推荐的 MV/MAV 区间下限。key = 肌群中文名,value = [min, max]。",
-        "胸": [10, 20],
-        "背": [10, 20],
-        "股四头": [8, 16],
-        "腘绳": [6, 14],
-        "臀": [6, 14],
-        "三角肌": [8, 16],
-        "三头": [6, 12],
-        "二头": [6, 12],
-        "核心": [6, 12],
-        "小腿": [6, 12]
+        "胸": [
+          10,
+          20
+        ],
+        "背": [
+          10,
+          20
+        ],
+        "股四头": [
+          8,
+          16
+        ],
+        "腘绳": [
+          6,
+          14
+        ],
+        "臀": [
+          6,
+          14
+        ],
+        "三角肌": [
+          8,
+          16
+        ],
+        "三头": [
+          6,
+          12
+        ],
+        "二头": [
+          6,
+          12
+        ],
+        "核心": [
+          6,
+          12
+        ],
+        "小腿": [
+          6,
+          12
+        ]
       },
       "intensity_floor_pct_1rm": 50,
       "intensity_floor_pct_1rm_doc": "低于此 1RM 百分比的组不计入容量(过滤掉轻重量激活组);默认 50%",
@@ -281,7 +316,16 @@
       "exercises.json(动作引用)",
       "rehab_kb.json(伤病禁忌过滤)",
       "hr_rpe_baseline.json(心率区间 + RPE 锚点)"
-    ]
+    ],
+    "example_count": 3,
+    "total_session_count": 3,
+    "updated_at": "2026-09-03T03:10:00+08:00",
+    "goals_covered": [
+      "增肌",
+      "减脂",
+      "力量"
+    ],
+    "latest_example": "plan_strength_4w_demo01"
   },
   "examples": [
     {
@@ -311,12 +355,30 @@
         "primary_split_method": "movement_pattern",
         "primary_vs_accessory_ratio": "60_40",
         "weekly_volume_targets_per_muscle_group": {
-          "胸": [10, 20],
-          "背": [10, 20],
-          "股四头": [8, 16],
-          "三角肌": [8, 16],
-          "三头": [6, 12],
-          "核心": [6, 12]
+          "胸": [
+            10,
+            20
+          ],
+          "背": [
+            10,
+            20
+          ],
+          "股四头": [
+            8,
+            16
+          ],
+          "三角肌": [
+            8,
+            16
+          ],
+          "三头": [
+            6,
+            12
+          ],
+          "核心": [
+            6,
+            12
+          ]
         },
         "intensity_floor_pct_1rm": 50,
         "rpe_floor": 5
@@ -492,16 +554,46 @@
         "primary_split_method": "movement_pattern",
         "primary_vs_accessory_ratio": "50_50",
         "weekly_volume_targets_per_muscle_group": {
-          "胸": [8, 14],
-          "背": [8, 14],
-          "股四头": [6, 12],
-          "腘绳": [6, 10],
-          "臀": [6, 12],
-          "三角肌": [6, 12],
-          "三头": [4, 10],
-          "二头": [4, 10],
-          "核心": [8, 16],
-          "小腿": [4, 8]
+          "胸": [
+            8,
+            14
+          ],
+          "背": [
+            8,
+            14
+          ],
+          "股四头": [
+            6,
+            12
+          ],
+          "腘绳": [
+            6,
+            10
+          ],
+          "臀": [
+            6,
+            12
+          ],
+          "三角肌": [
+            6,
+            12
+          ],
+          "三头": [
+            4,
+            10
+          ],
+          "二头": [
+            4,
+            10
+          ],
+          "核心": [
+            8,
+            16
+          ],
+          "小腿": [
+            4,
+            8
+          ]
         },
         "intensity_floor_pct_1rm": 50,
         "rpe_floor": 5
@@ -641,14 +733,411 @@
         "exclude_exercise_ids": [],
         "required_cardio_per_week_min": 90
       }
+    },
+    {
+      "id": "plan_strength_4w_demo01",
+      "name": "4 周纯力量周期化(PPL 3 练/周,大复合为锚)",
+      "goal": "力量",
+      "level": "intermediate",
+      "weeks": 4,
+      "sessions_per_week": 3,
+      "split": "push_pull_legs",
+      "progression_model": "linear",
+      "deload": {
+        "every_n_weeks": 4,
+        "intensity_drop_pct": 15,
+        "volume_drop_pct": 30
+      },
+      "tags": [
+        "力量",
+        "周期化",
+        "PPL",
+        "intermediate",
+        "复合动作",
+        "4 周",
+        "roadmap v0.3 / 3-5"
+      ],
+      "volume_policy": {
+        "counting_basis": "working_sets_only",
+        "warmup_policy": "exclude_with_separate_log",
+        "primary_split_method": "movement_pattern",
+        "primary_vs_accessory_ratio": "70_30",
+        "weekly_volume_targets_per_muscle_group": {
+          "胸": [
+            8,
+            12
+          ],
+          "背": [
+            8,
+            12
+          ],
+          "股四头": [
+            8,
+            14
+          ],
+          "腘绳": [
+            6,
+            10
+          ],
+          "臀": [
+            6,
+            10
+          ],
+          "三角肌": [
+            6,
+            10
+          ],
+          "三头": [
+            4,
+            8
+          ],
+          "二头": [
+            4,
+            8
+          ],
+          "核心": [
+            4,
+            8
+          ],
+          "小腿": [
+            4,
+            8
+          ]
+        },
+        "intensity_floor_pct_1rm": 70,
+        "rpe_floor": 7
+      },
+      "source_doc": "08_训练计划/周期化训练与减脂增肌方案.md",
+      "ref_section": "三、力量训练 4 周周期化方案(线性渐进 + PPL 分化)",
+      "created_at": "2026-09-03T03:10:00+08:00",
+      "updated_at": "2026-09-03T03:10:00+08:00",
+      "owner": "sport_advisor",
+      "weekly_target": {
+        "total_volume_kg_min": 0,
+        "total_volume_kg_max": 0,
+        "primary_lift_count_min": 6,
+        "cardio_minutes_min": 0,
+        "rpe_avg_target": 8.0,
+        "weekly_energy_expenditure_kcal_min": 800
+      },
+      "load_progression": {
+        "type": "linear",
+        "rule": "W1 75% 1RM / RPE 7 起手;W2 +2.5kg(下肢)/ +1.25-2.5kg(上肢);W3 +2.5kg;W4 deload 末周降至 85% + 末两日做 1RM 测试",
+        "weekly_intensity_increment_pct": 5,
+        "every_n_weeks_deload": 4
+      },
+      "constraints": {
+        "max_session_minutes": 75,
+        "min_rest_between_sessions_hours": 48,
+        "max_intensity_increase_weekly_pct": 5,
+        "exclude_exercise_ids": [],
+        "required_cardio_per_week_min": 0
+      },
+      "sessions": [
+        {
+          "id": "sess_plan_strength_4w_demo01_w1d1",
+          "plan_id": "plan_strength_4w_demo01",
+          "week_index": 1,
+          "day_index": 1,
+          "day_label": "周一 / Day 1 / PUSH(胸+肩+三头,主项卧推+推举)",
+          "focus": "胸+三角肌+三头(主项:杠铃卧推 + 站姿推举)",
+          "estimated_minutes": 65,
+          "warmup_ids": [
+            "ex_warmup_dynamic_full",
+            "ex_mobility_warmup_001"
+          ],
+          "main_blocks": [
+            "block_strength_w1d1_01",
+            "block_strength_w1d1_02",
+            "block_strength_w1d1_03"
+          ],
+          "cooldown_ids": [
+            "ex_stretch_chest",
+            "ex_stretch_back"
+          ],
+          "notes": "复合动作先做(精力最足);组间 120-180s 主项 / 90-120s 辅项;动作节奏 3-1-1-0 强调离心,排除动作惯性;W1 配重 75% 1RM 起手,首 2 组 ramp-up 不计容量",
+          "intensity_target": "主项 75% 1RM / RPE 7 | 辅项 RPE 7(同 1RM 区间,容量小)",
+          "set_blocks": [
+            {
+              "id": "block_strength_w1d1_01",
+              "session_id": "sess_plan_strength_4w_demo01_w1d1",
+              "order": 1,
+              "block_type": "compound",
+              "name": "杠铃卧推",
+              "exercise_id": "ex_strength_push_barbell_bench",
+              "reps": {
+                "target_min": 5,
+                "target_max": 5,
+                "unit": "reps"
+              },
+              "rep_sets": [
+                {
+                  "id": "rs_strength_w1d1_01_1",
+                  "set_number": 1,
+                  "rep_count": 5,
+                  "load_kg": 0,
+                  "load_pct_1rm": 0.55,
+                  "rpe": 5,
+                  "rest_sec": 180,
+                  "note": "热身组(ramp-up,不计容量)",
+                  "tempo": "3-1-1-0",
+                  "completed": false,
+                  "actual_reps": null,
+                  "actual_load": null,
+                  "logged_at": null
+                },
+                {
+                  "id": "rs_strength_w1d1_01_2",
+                  "set_number": 2,
+                  "rep_count": 5,
+                  "load_kg": 0,
+                  "load_pct_1rm": 0.65,
+                  "rpe": 6,
+                  "rest_sec": 180,
+                  "note": "热身组",
+                  "tempo": "3-1-1-0",
+                  "completed": false,
+                  "actual_reps": null,
+                  "actual_load": null,
+                  "logged_at": null
+                },
+                {
+                  "id": "rs_strength_w1d1_01_3",
+                  "set_number": 3,
+                  "rep_count": 5,
+                  "load_kg": 0,
+                  "load_pct_1rm": 0.75,
+                  "rpe": 7,
+                  "rest_sec": 180,
+                  "note": null,
+                  "tempo": "3-1-1-0",
+                  "completed": false,
+                  "actual_reps": null,
+                  "actual_load": null,
+                  "logged_at": null
+                },
+                {
+                  "id": "rs_strength_w1d1_01_4",
+                  "set_number": 4,
+                  "rep_count": 5,
+                  "load_kg": 0,
+                  "load_pct_1rm": 0.75,
+                  "rpe": 7,
+                  "rest_sec": 180,
+                  "note": null,
+                  "tempo": "3-1-1-0",
+                  "completed": false,
+                  "actual_reps": null,
+                  "actual_load": null,
+                  "logged_at": null
+                },
+                {
+                  "id": "rs_strength_w1d1_01_5",
+                  "set_number": 5,
+                  "rep_count": 5,
+                  "load_kg": 0,
+                  "load_pct_1rm": 0.75,
+                  "rpe": 7,
+                  "rest_sec": 180,
+                  "note": null,
+                  "tempo": "3-1-1-0",
+                  "completed": false,
+                  "actual_reps": null,
+                  "actual_load": null,
+                  "logged_at": null
+                }
+              ],
+              "set_count": 5,
+              "set_count_progression": "W1-W3 固定组数;W4 主项降为 3 组(deload 末周)",
+              "rest_sec_default": 180,
+              "rest_strategy": "固定",
+              "target_rpe_range": "6-7",
+              "failure_distance": 2,
+              "superset_with": null,
+              "drop_set": false,
+              "rest_pause": false,
+              "cluster_set": false,
+              "tempo": "3-1-1-0",
+              "notes": "主项: 强度优先,容量保守,组间充分休息;ramp-up 组不计容量"
+            },
+            {
+              "id": "block_strength_w1d1_02",
+              "session_id": "sess_plan_strength_4w_demo01_w1d1",
+              "order": 2,
+              "block_type": "compound",
+              "name": "站姿推举",
+              "exercise_id": "ex_strength_push_ohp",
+              "reps": {
+                "target_min": 6,
+                "target_max": 8,
+                "unit": "reps"
+              },
+              "rep_sets": [
+                {
+                  "id": "rs_strength_w1d1_02_1",
+                  "set_number": 1,
+                  "rep_count": 6,
+                  "load_kg": 0,
+                  "load_pct_1rm": 0.55,
+                  "rpe": 5,
+                  "rest_sec": 150,
+                  "note": "热身组(ramp-up,不计容量)",
+                  "tempo": "3-1-1-0",
+                  "completed": false,
+                  "actual_reps": null,
+                  "actual_load": null,
+                  "logged_at": null
+                },
+                {
+                  "id": "rs_strength_w1d1_02_2",
+                  "set_number": 2,
+                  "rep_count": 6,
+                  "load_kg": 0,
+                  "load_pct_1rm": 0.65,
+                  "rpe": 6,
+                  "rest_sec": 150,
+                  "note": "热身组",
+                  "tempo": "3-1-1-0",
+                  "completed": false,
+                  "actual_reps": null,
+                  "actual_load": null,
+                  "logged_at": null
+                },
+                {
+                  "id": "rs_strength_w1d1_02_3",
+                  "set_number": 3,
+                  "rep_count": 6,
+                  "load_kg": 0,
+                  "load_pct_1rm": 0.75,
+                  "rpe": 7,
+                  "rest_sec": 150,
+                  "note": null,
+                  "tempo": "3-1-1-0",
+                  "completed": false,
+                  "actual_reps": null,
+                  "actual_load": null,
+                  "logged_at": null
+                },
+                {
+                  "id": "rs_strength_w1d1_02_4",
+                  "set_number": 4,
+                  "rep_count": 6,
+                  "load_kg": 0,
+                  "load_pct_1rm": 0.75,
+                  "rpe": 7,
+                  "rest_sec": 150,
+                  "note": null,
+                  "tempo": "3-1-1-0",
+                  "completed": false,
+                  "actual_reps": null,
+                  "actual_load": null,
+                  "logged_at": null
+                }
+              ],
+              "set_count": 4,
+              "set_count_progression": "W1-W3 固定组数;W4 主项降为 3 组(deload 末周)",
+              "rest_sec_default": 150,
+              "rest_strategy": "固定",
+              "target_rpe_range": "6-7",
+              "failure_distance": 2,
+              "superset_with": null,
+              "drop_set": false,
+              "rest_pause": false,
+              "cluster_set": false,
+              "tempo": "3-1-1-0",
+              "notes": "主项: 强度优先,容量保守,组间充分休息;ramp-up 组不计容量"
+            },
+            {
+              "id": "block_strength_w1d1_03",
+              "session_id": "sess_plan_strength_4w_demo01_w1d1",
+              "order": 3,
+              "block_type": "accessory",
+              "name": "臂屈伸",
+              "exercise_id": "ex_strength_push_tricep_dip",
+              "reps": {
+                "target_min": 8,
+                "target_max": 12,
+                "unit": "reps"
+              },
+              "rep_sets": [
+                {
+                  "id": "rs_strength_w1d1_03_1",
+                  "set_number": 1,
+                  "rep_count": 8,
+                  "load_kg": 0,
+                  "load_pct_1rm": null,
+                  "rpe": 7,
+                  "rest_sec": 90,
+                  "note": null,
+                  "tempo": "3-1-1-0",
+                  "completed": false,
+                  "actual_reps": null,
+                  "actual_load": null,
+                  "logged_at": null
+                },
+                {
+                  "id": "rs_strength_w1d1_03_2",
+                  "set_number": 2,
+                  "rep_count": 8,
+                  "load_kg": 0,
+                  "load_pct_1rm": null,
+                  "rpe": 7,
+                  "rest_sec": 90,
+                  "note": null,
+                  "tempo": "3-1-1-0",
+                  "completed": false,
+                  "actual_reps": null,
+                  "actual_load": null,
+                  "logged_at": null
+                },
+                {
+                  "id": "rs_strength_w1d1_03_3",
+                  "set_number": 3,
+                  "rep_count": 8,
+                  "load_kg": 0,
+                  "load_pct_1rm": null,
+                  "rpe": 7,
+                  "rest_sec": 90,
+                  "note": null,
+                  "tempo": "3-1-1-0",
+                  "completed": false,
+                  "actual_reps": null,
+                  "actual_load": null,
+                  "logged_at": null
+                }
+              ],
+              "set_count": 3,
+              "set_count_progression": "W1-W3 固定组数;W4 主项降为 3 组(deload 末周)",
+              "rest_sec_default": 90,
+              "rest_strategy": "固定",
+              "target_rpe_range": "6-7",
+              "failure_distance": 3,
+              "superset_with": null,
+              "drop_set": false,
+              "rest_pause": false,
+              "cluster_set": false,
+              "tempo": "3-1-1-0",
+              "notes": "辅项: 强度优先,容量保守,组间充分休息;ramp-up 组不计容量"
+            }
+          ]
+        }
+      ],
+      "calendar_overview": {
+        "week_1": "PPL 3 练 × 75% 1RM 起手 / RPE 7,工作组合法性确认(动作模式稳定)",
+        "week_2": "PPL 3 练 × 80% 1RM / RPE 8,主项加重 2.5kg(下肢)/ 1.25-2.5kg(上肢)",
+        "week_3": "PPL 3 练 × 82.5% 1RM / RPE 8,保持容量不变,继续线性加重",
+        "week_4": "PPL 3 练 × 85% 1RM / RPE 9(主项降为 3 组 = deload 末周),W4 末两日做 1RM 测试,作为下一周期起点"
+      },
+      "notes": "纯力量周期化以 5 大复合(深蹲/卧推/硬拉/划船/推举)为锚,强度区间 75-90% 1RM,RPE 7-9;容量低于增肌计划(每肌群 8-12 working sets/周),节奏(tempo)采用 3-1-1-0 强调离心控制,排除动作惯性;intermediate 起手,新手请先完成 hypertrophy_4w_demo01 模板建立动作模式;主项前 2 组 ramp-up(65% → 70% 1RM)不计容量;W4 末两日(PUSH + PULL)做 1RM 测试,作为下一周期增量依据;组间休息 120-180s 主项 / 90-120s 辅项,避免中枢疲劳提前;PPL 3 练/周(PUSH 周一 / PULL 周三 / LEGS 周五),日间至少 48h 恢复。"
     }
   ],
   "roadmap": {
     "v0.1": "schema 草稿 + 1 个示例 4 周增肌计划 ✓ 2026-08-27",
     "v0.2": "新增 volume_policy 字段统一容量口径 ✓ 2026-09-01",
-    "v0.3": "增加 5 类目标各 1 个模板(增肌/减脂/力量/耐力/康复),各 plan 都必须填写 volume_policy(进行中:2/5 = 增肌+减脂,2026-09-02 落地减脂)",
+    "v0.3": "增加 5 类目标各 1 个模板(增肌/减脂/力量/耐力/康复),各 plan 都必须填写 volume_policy(进行中:3/5 = 增肌+减脂+力量,2026-09-03 落地力量)",
     "v0.4": "session 模板库(20+),支持 user_id 实例化",
     "v1.0": "FastAPI 集成 /plan 端点,从 plan_schema.json 实例化 user_plan"
   },
-  "next_step": "v0.3 余下 3 类模板(力量 / 耐力 / 康复)由 T3 后续推进;migrations/002_seed_demo_data.sql 已就位(0831 增量);volume_policy 容量校验在 FastAPI 层做后端兜底(v1.0)。"
+  "next_step": "v0.3 余下 2 类模板(耐力 / 康复)由 T3 后续推进;strength 模板与 fatloss/hypertrophy 同样使用 mock exercise_id 风格,Phase 1 接入 FastAPI 时统一与 exercises.json 实际 id 对齐(v1.0);migrations/002_seed_demo_data.sql 已就位(0831 增量);volume_policy 容量校验在 FastAPI 层做后端兜底(v1.0)",
+  "updated_at": "2026-09-03T03:10:00+08:00"
 }
