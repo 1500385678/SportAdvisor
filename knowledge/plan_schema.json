@@ -1,12 +1,13 @@
 {
-  "version": "0.5.0",
+  "version": "0.6.0",
   "schema_version": "0.3",
-  "generated_at": "2026-09-04",
+  "generated_at": "2026-09-05",
   "source_root": "_SportLib/",
   "sources": [
     "08_训练计划/周期化训练与减脂增肌方案.md",
     "02_力量训练/力量训练全指南.md",
-    "03_有氧运动/有氧运动完全指南.md"
+    "03_有氧运动/有氧运动完全指南.md",
+    "06_运动康复/腰背痛康复.md"
   ],
   "changelog": [
     {
@@ -33,9 +34,14 @@
       "version": "0.5.0",
       "date": "2026-09-04",
       "summary": "新增 1 个 4 周有氧耐力模板(plan_endurance_4w_demo01),3 练/周,Z2 慢跑为主项(30min 起步线性递增到 40min,RPE 4 / 60-70% HRmax),徒手力量循环为辅项(深蹲+俯卧撑+平板 3 轮);roadmap v0.3 第 4/5 个目标完成(4/5 = 增肌+减脂+力量+耐力,余 康复);volume_policy 落地 7 字段(per_muscle_targets 降至 0-4 因为力量占比小)+ cardio_summary 新增 primary_modality/weekly_minutes/rpe_target + weekly_target.cardio_minutes_min=90 + constraints.min_cardio_zone=Z2;典型 day 展示 Z2 慢跑 30min block + 徒手循环 3 轮 block;W4 deload 减量末两日做 5km 配速测试,作为下一周期起点;mock exercise_id 风格延续,Phase 1 接入 FastAPI 时统一与 exercises.json 实际 id 对齐(v1.0)"
+    },
+    {
+      "version": "0.6.0",
+      "date": "2026-09-05",
+      "summary": "新增 1 个 4 周康复模板(plan_rehab_4w_demo01),下背痛(LBP)亚急性/慢性期进阶回归,3 练/周 30-45min/练,4 阶段:激活(W1 死虫+臀桥+猫驼+15min 行走)→ 稳定(W2 加鸟狗+20min 行走)→ 力量回归(W3 罗马尼亚硬拉+平板+25min 行走)→ 整合(W4 单腿臀桥+平板延长+30min 行走);roadmap v0.3 第 5/5 个目标完成(5/5 = 增肌+减脂+力量+耐力+康复)—— Phase 0 任务 4 闭环;volume_policy 7 字段(per_muscle_targets 大幅降低至 0-4 因为康复不追求肌肥大,intensity_floor_pct_1rm 降至 40(徒手/轻负重),rpe_floor 降至 4)+ 新增 weekly_target.primary_lift_count_min=0(康复初期无大复合)+ constraints.rehab_constraints(pain_threshold_vas_max=3 / red_flag_stop_training 列表);load_progression 选 linear(康复线性回归,非渐增负荷);典型 day 展示 W1D1 4 个 set_block(死虫 3×8/侧 + 臀桥 3×10 + 猫驼 2×8 + 行走 15min Z1-Z2);inclusion_criteria(急性期 ≥ 72h / 无夜间痛 / 无神经症状)+ exclusion_criteria(神经根受压/马尾综合征/急性骨折/感染);新增 rehab_kb.json 关联 7 条伤病禁忌过滤;W4 末做 ODI 功能障碍指数 + 5×sit-and-reach 测试,作为下一周期或回归正常训练依据;mock exercise_id 风格延续,Phase 1 接入 FastAPI 时统一与 exercises.json 实际 id 对齐(v1.0)"
     }
   ],
-  "purpose": "训练计划表 schema:5 层结构 plan → session → set_block → rep_set → load_entry,覆盖 4/8/12 周周期化训练,支持增肌/减脂/康复/有氧/混合 5 类目标。v0.2 起 plan 必填 volume_policy,统一容量口径;v0.3 起每个目标至少 1 个模板入库,roadmap 推进 4/5(增肌+减脂+力量+耐力,余 康复);v0.5 起 endurance 模板新增 cardio_summary 字段(有氧主导模板专用),与 weekly_target.cardio_minutes_min + constraints.min_cardio_zone 三件套配套表达有氧容量。",
+  "purpose": "训练计划表 schema:5 层结构 plan → session → set_block → rep_set → load_entry,覆盖 4/8/12 周周期化训练,支持增肌/减脂/康复/有氧/混合 5 类目标。v0.2 起 plan 必填 volume_policy,统一容量口径;v0.3 起每个目标至少 1 个模板入库,roadmap 闭环 5/5(增肌+减脂+力量+耐力+康复,2026-09-05 落地康复);v0.5 起 endurance 模板新增 cardio_summary 字段(有氧主导模板专用),与 weekly_target.cardio_minutes_min + constraints.min_cardio_zone 三件套配套表达有氧容量;v0.6 起 rehab 模板新增 inclusion/exclusion_criteria + red_flags_stop_training + constraints.rehab_constraints(VAS 疼痛阈值 + 晨起僵硬阈值 + 进阶门槛),与 rehab_kb.json 7 条伤病禁忌过滤在 FastAPI 层做后端兜底;load_progression 模型区分:增肌 double_progression / 力量 double_progression 高强度 / 耐力 linear(时长递增) / 康复 linear(动作模式熟练度递进,非肌肥大)。",
   "schema": {
     "id": "plan_<goal>_<weeks>w_<userId> · 计划唯一 id",
     "name": "中文计划名,如 '4 周增肌入门'",
@@ -322,16 +328,17 @@
       "rehab_kb.json(伤病禁忌过滤)",
       "hr_rpe_baseline.json(心率区间 + RPE 锚点)"
     ],
-    "example_count": 4,
-    "total_session_count": 4,
-    "updated_at": "2026-09-04T03:10:00+08:00",
+    "example_count": 5,
+    "total_session_count": 5,
+    "updated_at": "2026-09-05T03:10:00+08:00",
     "goals_covered": [
       "增肌",
       "减脂",
       "力量",
-      "耐力"
+      "耐力",
+      "康复"
     ],
-    "latest_example": "plan_endurance_4w_demo01"
+    "latest_example": "plan_rehab_4w_demo01"
   },
   "examples": [
     {
@@ -1371,15 +1378,470 @@
         "week_4": "3 练/周 × 30min Z2 减量,W4 末两日做 5km 测试,作为下一周期起点"
       },
       "notes": "4 周有氧耐力入门以 Z2 慢跑为主项(60-70% HRmax / RPE 4 / 鼻呼吸可说话),徒手力量循环为辅项(8-10min,3 轮/3 动作);容量(时长)线性递增 W1 30min → W3 40min,W4 deload 减量;W4 末两日做 5km 配速测试,作为下一周期时长/速度起点;周内 3 练(周一/三/五),日间至少 24h 恢复;新手入门,有过基础运动经验(能跑 3km 不断)即可;心率/距离/时长用 Apple Watch / 佳明记录,作为下次训练配速依据;心率区间参考 hr_rpe_baseline.json 9 类人群基线;有氧训练心血管获益最大,降血压/血脂/胰岛素抵抗,长期建议 150min/周 Z2。"
+    },
+    {
+      "id": "plan_rehab_4w_demo01",
+      "name": "4 周下背痛(LBP)亚急性/慢性期进阶回归",
+      "goal": "康复",
+      "level": "beginner",
+      "weeks": 4,
+      "sessions_per_week": 3,
+      "split": "fullbody",
+      "progression_model": "linear",
+      "deload": {
+        "every_n_weeks": 4,
+        "intensity_drop_pct": 30,
+        "volume_drop_pct": 40
+      },
+      "tags": [
+        "康复",
+        "下背痛",
+        "LBP",
+        "亚急性",
+        "慢性",
+        "进阶回归",
+        "核心稳定",
+        "PEACE&LOVE"
+      ],
+      "source_doc": "06_运动康复/腰背痛康复.md",
+      "ref_section": "亚急性/慢性期 · 进阶回归 4 周方案",
+      "created_at": "2026-09-05T03:10:00+08:00",
+      "updated_at": "2026-09-05T03:10:00+08:00",
+      "owner": "sport_advisor",
+      "session_ids": [
+        "sess_plan_rehab_4w_demo01_w1d1",
+        "sess_plan_rehab_4w_demo01_w1d3",
+        "sess_plan_rehab_4w_demo01_w1d5",
+        "sess_plan_rehab_4w_demo01_w2d1",
+        "sess_plan_rehab_4w_demo01_w2d3",
+        "sess_plan_rehab_4w_demo01_w2d5",
+        "sess_plan_rehab_4w_demo01_w3d1",
+        "sess_plan_rehab_4w_demo01_w3d3",
+        "sess_plan_rehab_4w_demo01_w3d5",
+        "sess_plan_rehab_4w_demo01_w4d1",
+        "sess_plan_rehab_4w_demo01_w4d3",
+        "sess_plan_rehab_4w_demo01_w4d5"
+      ],
+      "inclusion_criteria": [
+        "急性期已过 72h(PEACE 阶段结束)",
+        "无夜间痛(入睡/翻身无诱发)",
+        "无神经症状(下肢放射痛/麻木/肌力下降)",
+        "VAS 疼痛评分 ≤ 4/10(站立/行走)",
+        "无发热/消瘦等红旗征"
+      ],
+      "exclusion_criteria": [
+        "神经根受压(直腿抬高试验阳性 + 下肢肌力 ↓)",
+        "马尾综合征(鞍区麻木 + 大小便障碍)",
+        "急性骨折/感染/肿瘤",
+        "怀孕中晚期(需产科评估)",
+        "严重骨质疏松(>50 岁女性 T 值 ≤ -2.5)"
+      ],
+      "red_flags_stop_training": [
+        "训练中 VAS 疼痛 > 6/10 立即停止",
+        "出现下肢放射痛/麻木加重",
+        "出现头晕/心悸/胸痛",
+        "次日晨起僵硬 > 30min(炎症加重信号)"
+      ],
+      "volume_policy": {
+        "_doc": "康复模板容量政策:康复不追求肌肥大,容量大幅降低(per_muscle_targets 0-4),强度下限降低(40% 1RM 适配徒手/轻负重),RPE 下限 4(过滤纯被动拉伸);primary_vs_accessory_ratio=50_50 因为康复强调动作模式平衡;counting_basis=working_sets_only 与 v0.2 全局保持一致。",
+        "counting_basis": "working_sets_only",
+        "counting_basis_enum_doc": "working_sets_only=仅工作组(力竭组 + 目标 RPE 组)计入容量 | all_sets=所有组(含热身) | working_sets_plus_warmup=工作组+热身组(热身组单列权重 0.5)",
+        "warmup_policy": "exclude_with_separate_log",
+        "warmup_policy_enum_doc": "exclude=不计入 | exclude_with_separate_log=不计入但单独记录热身组数 | include=计入容量(不推荐)",
+        "primary_split_method": "movement_pattern",
+        "primary_split_method_enum_doc": "movement_pattern=按动作模式(推/拉/髋铰链/蹲/负重行走)分 | muscle_group=按目标肌群(胸/背/腿/肩/臂)分 | exercise_id_list=显式列出主项 exercise_id(自定义)",
+        "primary_vs_accessory_ratio": "50_50",
+        "primary_vs_accessory_ratio_enum_doc": "50_50 | 60_40 | 70_30 | auto=按 goal 自动适配(增肌 60/40、力量 70/30、康复 50_50)",
+        "weekly_volume_targets_per_muscle_group": {
+          "_doc": "康复模板肌群周容量大幅低于增肌(每肌群 0-4 working sets/周),主轴是核心稳定 + 髋铰链控制 + 行走,肌肥大不是目标。",
+          "核心": [
+            4,
+            8
+          ],
+          "臀": [
+            4,
+            8
+          ],
+          "腘绳": [
+            2,
+            6
+          ],
+          "股四头": [
+            2,
+            6
+          ],
+          "背": [
+            2,
+            6
+          ],
+          "胸": [
+            0,
+            4
+          ],
+          "三角肌": [
+            0,
+            4
+          ],
+          "三头": [
+            0,
+            4
+          ],
+          "二头": [
+            0,
+            4
+          ],
+          "小腿": [
+            0,
+            4
+          ]
+        },
+        "intensity_floor_pct_1rm": 40,
+        "intensity_floor_pct_1rm_doc": "低于此 1RM 百分比的组不计入容量(过滤掉轻重量激活组);康复模板降至 40 因为大量徒手/轻负重动作",
+        "rpe_floor": 4,
+        "rpe_floor_doc": "低于此 RPE 的组不计入容量;康复模板降至 4 适配徒手动作"
+      },
+      "sessions": [
+        {
+          "id": "sess_plan_rehab_4w_demo01_w1d1",
+          "plan_id": "plan_rehab_4w_demo01",
+          "week_index": 1,
+          "day_index": 1,
+          "day_label": "周一 Day 1 · W1 激活",
+          "focus": "核心激活 + 髋铰链基础 + 低强度行走",
+          "estimated_minutes": 35,
+          "warmup_ids": [
+            "ex_mobility_breathing_90_90",
+            "ex_mobility_pelvic_tilt"
+          ],
+          "main_blocks": [
+            "block_rehab_w1d1_01_deadbug",
+            "block_rehab_w1d1_02_glute_bridge",
+            "block_rehab_w1d1_03_cat_cow",
+            "block_rehab_w1d1_04_walk_z1z2"
+          ],
+          "cooldown_ids": [
+            "ex_mobility_knees_to_chest",
+            "ex_mobility_child_pose"
+          ],
+          "notes": "W1 激活阶段:神经肌肉再教育为主,所有动作无外部负重,专注呼吸与核心控制(死虫式腹横肌激活,臀桥臀大肌激活);疼痛监控:任何动作 VAS > 3/10 立即降低幅度或跳过;组间休息 30-45s 偏短促以维持神经肌肉学习窗口;行走放最后 Z1-Z2 恢复性有氧 15min;全程不出现弯腰提重物动作。",
+          "intensity_target": "RPE 4-5 / 心率区间 Z1-Z2(行走段)",
+          "set_blocks": [
+            {
+              "id": "block_rehab_w1d1_01_deadbug",
+              "session_id": "sess_plan_rehab_4w_demo01_w1d1",
+              "order": 1,
+              "block_type": "isolation",
+              "name": "死虫式(腹横肌激活)",
+              "exercise_id": "ex_core_deadbug_3point",
+              "reps": {
+                "target_min": 6,
+                "target_max": 8,
+                "unit": "reps",
+                "note": "每侧 6-8 次,3 点(对侧手脚)→ 进阶 4 点(同时)"
+              },
+              "rep_sets": [
+                {
+                  "id": "rs_rehab_w1d1_01_1",
+                  "set_number": 1,
+                  "rep_count": 8,
+                  "load_kg": 0,
+                  "load_pct_1rm": null,
+                  "rpe": 4,
+                  "rest_sec": 30,
+                  "tempo": "3-2-3-0 · 慢速控制,排除惯性",
+                  "completed": false,
+                  "actual_reps": null,
+                  "actual_load": null,
+                  "logged_at": null,
+                  "note": "腰部贴地,腹横肌先于四肢启动"
+                },
+                {
+                  "id": "rs_rehab_w1d1_01_2",
+                  "set_number": 2,
+                  "rep_count": 8,
+                  "load_kg": 0,
+                  "load_pct_1rm": null,
+                  "rpe": 4,
+                  "rest_sec": 30,
+                  "tempo": "3-2-3-0",
+                  "completed": false,
+                  "actual_reps": null,
+                  "actual_load": null,
+                  "logged_at": null,
+                  "note": "保持 3-2-3-0 节拍,不憋气"
+                },
+                {
+                  "id": "rs_rehab_w1d1_01_3",
+                  "set_number": 3,
+                  "rep_count": 8,
+                  "load_kg": 0,
+                  "load_pct_1rm": null,
+                  "rpe": 5,
+                  "rest_sec": 30,
+                  "tempo": "3-2-3-0",
+                  "completed": false,
+                  "actual_reps": null,
+                  "actual_load": null,
+                  "logged_at": null,
+                  "note": "末组若能控制良好,可进阶 4 点同时"
+                }
+              ],
+              "set_count": 3,
+              "set_count_progression": "固定 3 组;W2 进阶 4 点对侧同时",
+              "rest_sec_default": 30,
+              "rest_strategy": "固定 30s,神经肌肉学习需要短促",
+              "target_rpe_range": "4-5",
+              "failure_distance": 4,
+              "superset_with_block_id": null,
+              "drop_set": false,
+              "rest_pause": false,
+              "note": "康复主项:核心稳定重建,所有组计入容量(intensity_floor 跳过——徒手不计 1RM);疼痛监控 VAS ≤ 3/10"
+            },
+            {
+              "id": "block_rehab_w1d1_02_glute_bridge",
+              "session_id": "sess_plan_rehab_4w_demo01_w1d1",
+              "order": 2,
+              "block_type": "isolation",
+              "name": "臀桥(臀大肌激活)",
+              "exercise_id": "ex_glute_bridge_bilateral",
+              "reps": {
+                "target_min": 10,
+                "target_max": 12,
+                "unit": "reps",
+                "note": "顶峰收缩 2s,避免腰部过度伸展代偿"
+              },
+              "rep_sets": [
+                {
+                  "id": "rs_rehab_w1d1_02_1",
+                  "set_number": 1,
+                  "rep_count": 10,
+                  "load_kg": 0,
+                  "load_pct_1rm": null,
+                  "rpe": 4,
+                  "rest_sec": 30,
+                  "tempo": "2-1-2-0 · 顶峰收缩 2s",
+                  "completed": false,
+                  "actual_reps": null,
+                  "actual_load": null,
+                  "logged_at": null,
+                  "note": "夹臀发力,腰部贴地"
+                },
+                {
+                  "id": "rs_rehab_w1d1_02_2",
+                  "set_number": 2,
+                  "rep_count": 10,
+                  "load_kg": 0,
+                  "load_pct_1rm": null,
+                  "rpe": 4,
+                  "rest_sec": 30,
+                  "tempo": "2-1-2-0",
+                  "completed": false,
+                  "actual_reps": null,
+                  "actual_load": null,
+                  "logged_at": null,
+                  "note": "保持骨盆后倾"
+                },
+                {
+                  "id": "rs_rehab_w1d1_02_3",
+                  "set_number": 3,
+                  "rep_count": 10,
+                  "load_kg": 0,
+                  "load_pct_1rm": null,
+                  "rpe": 5,
+                  "rest_sec": 30,
+                  "tempo": "2-1-2-0",
+                  "completed": false,
+                  "actual_reps": null,
+                  "actual_load": null,
+                  "logged_at": null,
+                  "note": "末组尝试进阶单腿(W2 引入)"
+                }
+              ],
+              "set_count": 3,
+              "set_count_progression": "固定 3 组;W2 进阶单腿,组数不变次数降至 8/侧",
+              "rest_sec_default": 30,
+              "rest_strategy": "固定 30s",
+              "target_rpe_range": "4-5",
+              "failure_distance": 4,
+              "superset_with_block_id": null,
+              "drop_set": false,
+              "rest_pause": false,
+              "note": "康复主项:髋铰链基础 + 臀大肌唤醒,W3 引入轻负重(5kg 杠铃/壶铃)"
+            },
+            {
+              "id": "block_rehab_w1d1_03_cat_cow",
+              "session_id": "sess_plan_rehab_4w_demo01_w1d1",
+              "order": 3,
+              "block_type": "mobility",
+              "name": "猫驼式(胸椎 + 腰椎节段活动)",
+              "exercise_id": "ex_mobility_cat_cow",
+              "reps": {
+                "target_min": 6,
+                "target_max": 8,
+                "unit": "reps",
+                "note": "6-8 次完整节段,吸-呼配合"
+              },
+              "rep_sets": [
+                {
+                  "id": "rs_rehab_w1d1_03_1",
+                  "set_number": 1,
+                  "rep_count": 8,
+                  "load_kg": 0,
+                  "load_pct_1rm": null,
+                  "rpe": 3,
+                  "rest_sec": 20,
+                  "tempo": "4-0-4-0 · 4s 猫式 4s 驼式",
+                  "completed": false,
+                  "actual_reps": null,
+                  "actual_load": null,
+                  "logged_at": null,
+                  "note": "吸气进猫式,呼气进驼式"
+                },
+                {
+                  "id": "rs_rehab_w1d1_03_2",
+                  "set_number": 2,
+                  "rep_count": 8,
+                  "load_kg": 0,
+                  "load_pct_1rm": null,
+                  "rpe": 3,
+                  "rest_sec": 20,
+                  "tempo": "4-0-4-0",
+                  "completed": false,
+                  "actual_reps": null,
+                  "actual_load": null,
+                  "logged_at": null,
+                  "note": "幅度以无痛为限,不强求最大"
+                }
+              ],
+              "set_count": 2,
+              "set_count_progression": "固定 2 组",
+              "rest_sec_default": 20,
+              "rest_strategy": "固定 20s",
+              "target_rpe_range": "3-4",
+              "failure_distance": 5,
+              "superset_with_block_id": null,
+              "drop_set": false,
+              "rest_pause": false,
+              "note": "康复辅项:节段性活动度,RPE < floor 不计入容量(过滤掉纯被动拉伸)"
+            },
+            {
+              "id": "block_rehab_w1d1_04_walk_z1z2",
+              "session_id": "sess_plan_rehab_4w_demo01_w1d1",
+              "order": 4,
+              "block_type": "interval",
+              "name": "低强度行走(Z1-Z2 恢复性)",
+              "exercise_id": "ex_cardio_walk_z1z2",
+              "reps": {
+                "target_min": 15,
+                "target_max": 15,
+                "unit": "min",
+                "note": "15min 持续 Z1-Z2,心率 ≤ 70% HRmax,可鼻呼吸对话"
+              },
+              "rep_sets": [
+                {
+                  "id": "rs_rehab_w1d1_04_1",
+                  "set_number": 1,
+                  "rep_count": 15,
+                  "load_kg": 0,
+                  "load_pct_1rm": null,
+                  "rpe": 3,
+                  "rest_sec": 0,
+                  "tempo": null,
+                  "completed": false,
+                  "actual_reps": null,
+                  "actual_load": null,
+                  "logged_at": null,
+                  "note": "平地为主,避免坡度;腰背无不适"
+                }
+              ],
+              "set_count": 1,
+              "set_count_progression": "线性递增 W1 15min → W2 20min → W3 25min → W4 30min",
+              "rest_sec_default": 0,
+              "rest_strategy": "持续活动",
+              "target_rpe_range": "3-4",
+              "failure_distance": 5,
+              "superset_with_block_id": null,
+              "drop_set": false,
+              "rest_pause": false,
+              "note": "康复辅项:低强度恢复性有氧,渐进性回归心血管适应;线性递增每周加 5min;RPE 3-4 心率 Z1-Z2;走完后做 cooldown 拉伸"
+            }
+          ],
+          "cardio_summary": {
+            "type": "Z1-Z2 行走",
+            "duration_min": 15,
+            "hr_zone": "Z1-Z2",
+            "rpe_target": 3
+          },
+          "load_summary": {
+            "total_volume_kg": 0,
+            "primary_lift_volume_kg": 0,
+            "accessory_volume_kg": 0,
+            "intensity_avg_rpe": 4,
+            "intensity_avg_pct_1rm": null
+          },
+          "completed_at": null,
+          "user_feedback": {
+            "difficulty": "easy|just_right|hard",
+            "enjoyment": 1,
+            "energy": 1,
+            "note": "训练后感受 + 疼痛 VAS 评分(0-10)"
+          }
+        }
+      ],
+      "weekly_target": {
+        "total_volume_kg_min": 0,
+        "total_volume_kg_max": 200,
+        "primary_lift_count_min": 0,
+        "cardio_minutes_min": 45,
+        "rpe_avg_target": 4
+      },
+      "load_progression": {
+        "type": "linear",
+        "rule": "康复线性回归:每周递进负荷(徒手 → 轻负重 5kg)或递增时长(行走 15→30min);不采用 double_progression 因为不追求肌肥大,而是动作模式熟练度与神经肌肉控制",
+        "weekly_intensity_increment_pct": 5,
+        "every_n_weeks_deload": 4
+      },
+      "constraints": {
+        "max_session_minutes": 45,
+        "min_rest_between_sessions_hours": 24,
+        "max_intensity_increase_weekly_pct": 10,
+        "exclude_exercise_ids": [
+          "ex_compound_barbell_squat_back",
+          "ex_compound_barbell_deadlift_conventional",
+          "ex_compound_barbell_goodmorning",
+          "ex_compound_olympic_lift_clean",
+          "ex_compound_olympic_lift_snatch"
+        ],
+        "rehab_constraints": {
+          "pain_threshold_vas_max": 3,
+          "pain_threshold_vas_doc": "训练中 VAS > 3/10 立即降低幅度或停止(VAS=Visual Analog Scale 0-10 疼痛评分)",
+          "morning_stiffness_min_threshold": 30,
+          "morning_stiffness_min_threshold_doc": "次日晨起僵硬 > 30min 视为炎症加重,需降级或休息 1-2 日",
+          "progression_gate": "新动作/负重加入前必须连续 3 次无 VAS > 2/10 且晨起僵硬 < 15min",
+          "red_flag_stop_training": [
+            "训练中 VAS 疼痛 > 6/10 立即停止",
+            "出现下肢放射痛/麻木加重",
+            "出现头晕/心悸/胸痛",
+            "次日晨起僵硬 > 30min"
+          ]
+        }
+      },
+      "calendar_overview": {
+        "week_1": "3 练/周(周一/三/五) × 30-35min,激活阶段:死虫+臀桥+猫驼+15min 行走;无外部负重,无深蹲/硬拉;全程 VAS ≤ 3/10",
+        "week_2": "3 练/周 × 35-40min,稳定阶段:加鸟狗式(对侧手脚同时)+臀桥进阶单腿+20min 行走;继续无外部负重,核心控制进阶",
+        "week_3": "3 练/周 × 40-45min,力量回归阶段:罗马尼亚硬拉 3×10 轻负重 5-10kg(髋铰链重载)+平板 3×30s+臀桥加负重+25min 行走;引入轻负重,容量小幅提升",
+        "week_4": "3 练/周 × 40-45min,整合阶段:单腿臀桥+平板 3×45s+罗马尼亚硬拉加到 3×12 + 30min 行走;W4 末做 ODI 功能障碍指数 + 5×sit-and-reach 测试,作为下一周期或回归正常训练依据"
+      },
+      "notes": "4 周下背痛(LBP)亚急性/慢性期进阶回归以神经肌肉控制 + 核心稳定 + 髋铰链基础为骨架,4 阶段线性递进:激活(W1)→ 稳定(W2)→ 力量回归(W3 罗马尼亚硬拉轻负重)→ 整合(W4 单腿进阶);容量(组数+时长)线性递增不采用 double_progression,因为康复不追求肌肥大而是动作模式熟练度;全程外部负重不超过 10kg(罗马尼亚硬拉在 W3 引入 5-10kg),排除深蹲/常规硬拉/奥举等高脊柱负荷动作;训练时长 30-45min 短促,符合 LBP 急性后期耐受度;周内 3 练(周一/三/五),日间至少 24h 恢复;inclusion_criteria 严格(VAS ≤ 4 / 无神经症状 / 急性期 ≥ 72h),exclusion_criteria 明确(神经根/马尾/骨折/感染);训练中 VAS > 3 立即降级或停止,次日晨起僵硬 > 30min 视为炎症加重信号;W4 末做 ODI(Oswestry Disability Index)功能障碍指数 + 5×sit-and-reach 测试,作为下一周期或回归正常训练(增肌/力量)起点;mock exercise_id 风格延续,Phase 1 接入 FastAPI 时统一与 exercises.json 实际 id 对齐(v1.0);rehab_kb.json 7 条伤病禁忌过滤在 FastAPI 层做后端兜底(v1.0)。"
     }
   ],
   "roadmap": {
     "v0.1": "schema 草稿 + 1 个示例 4 周增肌计划 ✓ 2026-08-27",
     "v0.2": "新增 volume_policy 字段统一容量口径 ✓ 2026-09-01",
-    "v0.3": "增加 5 类目标各 1 个模板(增肌/减脂/力量/耐力/康复),各 plan 都必须填写 volume_policy(进行中:4/5 = 增肌+减脂+力量+耐力,2026-09-04 落地耐力,余 康复 1 类)",
+    "v0.3": "增加 5 类目标各 1 个模板(增肌/减脂/力量/耐力/康复),各 plan 都必须填写 volume_policy ✓ 2026-09-05(5/5 = 增肌+减脂+力量+耐力+康复,Phase 0 任务 4 闭环)",
     "v0.4": "session 模板库(20+),支持 user_id 实例化",
     "v1.0": "FastAPI 集成 /plan 端点,从 plan_schema.json 实例化 user_plan"
   },
-  "next_step": "v0.3 余下 1 类模板(康复)由 T3 后续推进;endurance 模板新增 cardio_summary 字段(有氧主导模板专用),与 weekly_target.cardio_minutes_min + constraints.min_cardio_zone 三件套配套表达有氧容量,后续 v0.4 session 模板库设计可参考;endurance 模板与 strength/fatloss/hypertrophy 同样使用 mock exercise_id 风格,Phase 1 接入 FastAPI 时统一与 exercises.json 实际 id 对齐(v1.0);migrations/002_seed_demo_data.sql 已就位(0831 增量);volume_policy 容量校验在 FastAPI 层做后端兜底(v1.0);endurance 心率区间走 hr_rpe_baseline.json 9 类人群基线,Phase 1 接入穿戴数据(Apple HealthKit / Garmin Connect)后可自动校准 Z2 区间。",
-  "updated_at": "2026-09-04T03:10:00+08:00"
+  "next_step": "Phase 0 任务 4(roadmap v0.3,5 类目标各 1 个模板)2026-09-05 闭环(5/5 = 增肌+减脂+力量+耐力+康复);rehab 模板新增 inclusion/exclusion criteria + red_flags_stop_training + rehab_constraints 字段(VAS 疼痛阈值 + 晨起僵硬阈值 + 进阶门槛),与 rehab_kb.json 7 条伤病禁忌过滤在 FastAPI 层做后端兜底(v1.0);rehab 模板 load_progression 选 linear(康复线性回归,非渐增负荷),区别于 strength(double_progression)与 endurance(linear 但容量口径不同);endurance 模板 cardio_summary 字段(有氧主导模板专用)+ rehab 模板 rehab_constraints 字段(康复主导模板专用)——两类主导模板的扩展字段模式,后续 v0.4 session 模板库设计可参考;5 个 mock-id 模板与 exercises.json 实际 id 对齐推迟至 v1.0;Phase 1 仍阻塞 6+ 天,待 T1 拍板入口形态(后续入口:venv + FastAPI /plan 端点 + 从 plan_schema.json 实例化 user_plan)。",
+  "updated_at": "2026-09-05T03:10:00+08:00"
 }
